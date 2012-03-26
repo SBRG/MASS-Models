@@ -13,6 +13,10 @@ Union[Flatten[{DeleteCases[proteinAssociations,r_Rule/;r[[2]]===None,\[Infinity]
 xmlReaction2geneAssociation=If[Length[#]>0,#[[1]],#]&@Cases[Cases[#[[3]],XMLElement["notes",__]][[1]],s_String/;StringMatchQ[s,RegularExpression["GENE ASSOCIATION:(.*)"]]:>ToExpression@StringReplace[s,{"GENE ASSOCIATION:"->"","or"->"||","and"->"&&"}],\[Infinity]]&;
 
 
+defaultInitializationNotes="Model constructed on "<>DateString[]<>" by "<>$UserName<>" on "<>$MachineName<>"."<>$MachineDomain<>
+" using "<>$Version<>" at the following geodetic location: "<>("latitude "<>ToString[#[[1]]]<>"; longitude "<>ToString[#[[2]]]&@FindGeoLocation[])&;
+
+
 getReferenceFluxesAndBoundsFromXML[path_String]:=Block[{tmp,tmp2,tmp3,tmp4},
 tmp=Import[path,"Text"];
 tmp2=StringCases[tmp,RegularExpression["(?s)listOfReactions.+"]];

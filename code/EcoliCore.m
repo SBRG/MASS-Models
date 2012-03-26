@@ -57,6 +57,7 @@ additionalRxns=reactionFromString/@{"GLYK: M_atp_c + M_glyc_c --> M_adp_c + M_gl
 ecolicore=addReactions[ecolicore,additionalRxns];
 setModelAttribute[ecolicore,"GPR",gpr];
 setModelAttribute[ecolicore,"InitialConditions",{}];
+setModelAttribute[ecolicore,"Notes",defaultInitializationNotes[]];
 
 
 ecolicore["Notes"]

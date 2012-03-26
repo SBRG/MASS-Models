@@ -29,6 +29,7 @@ SetDirectory[NotebookDirectory[]];
 model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"];
 setModelAttribute[model,"GPR",gpr];
 updateModelAttribute[model,"Constraints",referenceBounds];
+setModelAttribute[model,"Notes",defaultInitializationNotes[]];
 
 
 model["Notes"]
