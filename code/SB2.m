@@ -1,0 +1,104 @@
+(* ::Package:: *)
+
+<<MASStoolbox`
+<<XML`
+SetDirectory[NotebookDirectory[]];
+<<util`
+
+
+(* ::Title:: *)
+(*SB2*)
+(*Systems Biology: Simulation of Dynamic Network States*)
+
+
+(* ::Section:: *)
+(*Glycolysis*)
+
+
+(* ::Subsection:: *)
+(*Construct model*)
+
+
+ClearAll["Global`*"]
+chemicalFormulas={m["glu", "c"]->"C6H12O6",m["g6p", "c"]->"H11C6O9P",m["f6p", "c"]->"H11C6O9P",m["fdp", "c"]->"H10C6O12P2",m["dhap", "c"]->"H5C3O6P",m["gap", "c"]->"H5C3O6P",m["pg13", "c"]->"H4C3O10P2",m["pg3", "c"]->"H4C3O7P",m["pg2", "c"]->"H4C3O7P",m["pep", "c"]->"H2C3O6P",m["pyr", "c"]->"H3C3O3",m["lac", "c"]->"H5C3O3",m["nad", "c"]->"&NAD&",m["nadh", "c"]->"H&NAD&",m["amp", "c"]->"H13C10N5O7P",m["adp", "c"]->"H13C10N5O10P2",m["atp", "c"]->"H13C10N5O13P3",m["phos", "c"]->"HO4P",m["h", "c"]->"H",m["h2o", "c"]->"H2O"};
+rxns=reactionFromString/@{"vhk: atp_c + glu_c <=> adp_c + g6p_c + h_c","vpgi: g6p_c <=> f6p_c","vpfk: atp_c + f6p_c <=> adp_c + fdp_c + h_c","vtpi: dhap_c <=> gap_c","vald: fdp_c <=> dhap_c + gap_c","vgapdh: gap_c + nad_c + phos_c <=> h_c + nadh_c + pg13_c","vpgk: adp_c + pg13_c <=> atp_c + pg3_c","vpglm: pg3_c <=> pg2_c","veno: pg2_c <=> h2o_c + pep_c","vpk: adp_c + h_c + pep_c <=> atp_c + pyr_c","vldh: h_c + nadh_c + pyr_c <=> lac_c + nad_c","vamp: amp_c <=> 0","vapk: 2 adp_c <=> amp_c + atp_c","vpyr: pyr_c <=> 0","vlac: lac_c <=> 0","vatp: atp_c + h2o_c <=> adp_c + h_c + phos_c","vnadh: nadh_c <=> h_c + nad_c","vgluin: 0 <=> glu_c","vampin: 0 <=> amp_c","vh: h_c <=> 0","vh2o: h2o_c <=> 0"};
+equilibriumConstants={Keq["vhk"]->850,Keq["vpgi"]->0.41,Keq["vpfk"]->310,Keq["vtpi"]->0.05714285714285714,Keq["vald"]->0.082,Keq["vgapdh"]->0.0179,Keq["vpgk"]->1800,Keq["vpglm"]->0.14705882352941177,Keq["veno"]->1.6949152542372883,Keq["vpk"]->363000,Keq["vldh"]->26300,Keq["vamp"]->Infinity,Keq["vapk"]->1.65,Keq["vpyr"]->1.,Keq["vlac"]->1.,Keq["vatp"]->Infinity,Keq["vnadh"]->Infinity,Keq["vgluin"]->Infinity,Keq["vampin"]->Infinity,Keq["vh"]->1.,Keq["vh2o"]->1.};
+externalFixedConc={m["pyr","Xt"]->.06,m["amp","Xt"]->1,m["h","Xt"]->10.^(-4.2),m[_,"Xt"]->1};
+steadyStateConcentrations={m["glu", "c"] -> 1., m["g6p", "c"] -> 0.0486, m["f6p", "c"] -> 0.0198, m["fdp", "c"] -> 0.0146, m["dhap", "c"] -> 0.16, 
+ m["gap", "c"] -> 0.00728, m["pg13", "c"] -> 0.000243, m["pg3", "c"] -> 0.0773, m["pg2", "c"] -> 0.0113, m["pep", "c"] -> 0.017, 
+ m["pyr", "c"] -> 0.060301, m["lac", "c"] -> 1.36, m["nad", "c"] -> 0.0589, m["nadh", "c"] -> 0.0301, m["amp", "c"] -> 0.08672812499999999, 
+ m["adp", "c"] -> 0.29, m["atp", "c"] -> 1.6, m["phos", "c"] -> 2.5, m["h", "c"] -> 0.00008997573444801929, m["h2o", "c"] -> 1.};
+glycolysis=constructModel[rxns,
+"ElementalComposition"->chemicalFormulas,
+"Ignore"->{m["h","c"],m["h2o","c"]},
+"CustomRateLaws"->{"vh"->MASStoolbox`MASS`rateconst["vh", True](m["h","c"]-m["h", "Xt"] /MASStoolbox`MASS`Keq["vh"]),"vh2o"->MASStoolbox`MASS`rateconst["vh2o", True](m["h2o","c"]-m["h2o", "Xt"] /MASStoolbox`MASS`Keq["vh2o"])},
+"InitialConditions"->steadyStateConcentrations,
+"Parameters"->Join[equilibriumConstants,externalFixedConc]];
+
+null=({
+ {1, 0, 1},
+ {1, 0, 0},
+ {0, 1, 0}
+}).NullSpace[glycolysis];
+gluin=1.12;
+ststloadnadh=0.2*gluin;
+ampin=.014;
+givenststfluxes=({
+ {gluin, ststloadnadh, ampin}
+});
+solution=Flatten[Transpose[givenststfluxes.null]];
+steadyStateFluxes=Thread[Rule[glycolysis["Fluxes"],solution]];
+
+updateModelAttribute[glycolysis,"InitialConditions",steadyStateFluxes];
+perc=calcPERC[glycolysis];
+(*perc=updateRules[perc,{Subsuperscript[k, vapk, \[LongRightArrow]]->1,Subsuperscript[k, vh2o, \[LongRightArrow]]->100000}]*)
+updateModelAttribute[glycolysis,"Parameters",perc];
+
+SetDirectory[NotebookDirectory[]];
+Export["../models/SB2/glycolysis.m.gz",glycolysis]
+
+
+(* ::Subsection:: *)
+(*Analyze model*)
+
+
+{concSol,fluxSol}=simulate[glycolysis,{t,0,1000}];
+plotSimulation[concSol,{t,0,1000}]
+
+
+Unprotect[plotSimulation];
+Options[plotSimulation]=updateRules[Union[Options[LogLogPlot],Options[ListPlot]],{"PlotFunction"->LogLogPlot,"Tooltipped"->True,"ZeroFac"->1*^-6,Joined->True,"Legend"->False}];
+plotSimulation[simulation:{_Rule..},{t_Symbol,tMin_?NumberQ,tMax_?NumberQ,tStep_:.1},opts:OptionsPattern[]]:=Module[{interPolDat,numericalDat,plotFunction,plotOpts,fac,interPolPlot,numericalPlotFunction,numericalPlot,legend},
+interPolDat=Cases[simulation,r_Rule/;MemberQ[r,InterpolatingFunction[__][_],\[Infinity]],\[Infinity]];
+numericalDat=DeleteCases[Complement[simulation,interPolDat],r_Rule/;r[[2]]==0.];
+numericalDat=If[OptionValue["Tooltipped"],Thread[Tooltip[numericalDat[[All,2]],numericalDat[[All,1]]]],numericalDat[[All,2]]];
+interPolDat=If[OptionValue["Tooltipped"],Thread[Tooltip[Evaluate@interPolDat[[All,2]],StandardForm/@interPolDat[[All,1]]]],interPolDat[[All,2]]];
+plotFunction=OptionValue["PlotFunction"];
+numericalPlotFunction=ToExpression["List"<>ToString[plotFunction]];
+legend=If[OptionValue["Legend"]=!=False,Epilog->If[OptionQ[OptionValue["Legend"]],insetLegend[StandardForm/@simulation[[All,1]],Evaluate[Sequence@@OptionValue["Legend"]]],insetLegend[StandardForm/@simulation[[All,1]]]],Epilog->{}];
+If[interPolDat!={},
+plotOpts=FilterRules[{opts},Options[plotFunction]];
+fac=If[tMin==0&&(plotFunction===LogLogPlot||plotFunction===LogLinearPlot),OptionValue["ZeroFac"],0.];
+Quiet@Check[interPolPlot=plotFunction[Evaluate[interPolDat],{t,Evaluate[tMin+fac],tMax},Evaluate[Sequence@@plotOpts],Evaluate[legend]],None,InterpolatingFunction::dmval];,
+interPolPlot={};
+];
+If[numericalDat!={},
+numericalPlot=numericalPlotFunction[numericalDat[[All,2]],PlotRange->{{Evaluate[tMin+fac],tMax},All},Sequence@@FilterRules[{opts},Options[numericalPlotFunction]]],numericalPlot={}];
+Show[Sequence@@Flatten[{interPolPlot,numericalPlot}]]
+];
+plotSimulation[simulation:{_Rule..},opts:OptionsPattern[]]:=Module[{tStart,tEnd},
+{tStart,tEnd}={Max[#[[1]]],Min[#[[2]]]}&@Transpose[Cases[simulation,InterpolatingFunction[{{start_,end_}},___][_]:>{start,end},\[Infinity]]];
+plotSimulation[simulation,{t,tStart,tEnd},opts]
+];
+def:plotSimulation[___]:=(Message[MASS::badargs,plotSimulation,Defer@def];Abort[])
+Protect[plotSimulation];
+
+
+Tooltip[1,m["atp"],LabelStyle->{Background->Green,CellFrameColor->Blue,CellFrame->3}]
+
+
+Tooltip[1,Rasterize[m["atp"]],LabelStyle->Directive[Red,Bold]]
+
+
+{concSol,fluxSol}=simulate[glycolysis,{t,0,1000},Parameters->{MASStoolbox`MASS`rateconst["vatp", True]->2}];
+plotSimulation[concSol,{t,0,1000}]
