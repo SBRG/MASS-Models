@@ -20,13 +20,13 @@ gpr=simphenyGPRr2gpr[gprData[[2;;]]];
 
 
 SetDirectory[NotebookDirectory[]];
-referenceFluxesPlusBounds=getReferenceFluxesAndBoundsFromXML["../data/iJO1366/msb201165-s3.xml.gz"];
+referenceFluxesPlusBounds=getReferenceFluxesAndBoundsFromXML["../data/iJO1366/msb201165-s3.xml.gz"]/.s_String:>StringReplace[s,{RegularExpression["^M_"]->"",RegularExpression["^R_"]->""}];
 referenceBounds=#[[1]]->#[[2,1;;2]]&/@referenceFluxesPlusBounds;
 referenceFluxes=#[[1]]->#[[2,-1]]&/@referenceFluxesPlusBounds;
 
 
 SetDirectory[NotebookDirectory[]];
-model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"];
+model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"]/.s_String:>StringReplace[s,{RegularExpression["^M_"]->"",RegularExpression["^R_"]->""}]/.m_metabolite:>metabolite[StringReplace[getID[m],RegularExpression["_[^_]+$"]->""],getCompartment[m]];
 setModelAttribute[model,"GPR",gpr];
 updateModelAttribute[model,"Constraints",referenceBounds];
 setModelAttribute[model,"Notes",defaultInitializationNotes[]];
