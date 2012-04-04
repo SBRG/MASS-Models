@@ -92,6 +92,9 @@ TableForm[ruleSet2=Replace[Cases[booleanRules2,l_List/;l[[1]]!="":>protein[l[[2]
 
 SetDirectory[NotebookDirectory[]];
 ecolicore=sbml2model["../data/EcoliCore/EcoliCore.xml.gz",BIGG->True];
+revExchanges=r[getID@#,getProducts@#,getSubstrates@#,Reverse[getStoich@#],reversibleQ@#]&/@ecolicore["Exchanges"];
+ecolicore=deleteReactions[ecolicore,getID/@ecolicore["Exchanges"]];
+ecolicore=addReactions[ecolicore,revExchanges];
 additionalRxns=reactionFromString/@{"GLYK: M_atp_c + M_glyc_c --> M_adp_c + M_glyc3p_c + M_h_c","G3PD2: M_glyc3p_c + M_nadp_c <=> M_dhap_c + M_h_c + M_nadph_c","EX_glyc(e): 0 <=> M_glyc_c"};
 ecolicore=addReactions[ecolicore,additionalRxns];
 setModelAttribute[ecolicore,"GPR",gpr];
