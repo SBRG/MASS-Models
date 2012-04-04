@@ -10,7 +10,7 @@ SetDirectory[NotebookDirectory[]];
 (*E. coli Core*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*GPRs*)
 
 
@@ -49,6 +49,45 @@ gr=DeleteCases[("id"/.Dispatch[#[[2]]])->(xmlReaction2geneAssociation@#)&/@listO
 SetDirectory[NotebookDirectory[]];
 gprData=Import["../data/EcoliCore/Ecoli_core_GPRs.csv.gz"];
 gpr=simphenyGPRr2gpr[gprData[[2;;]]];
+
+
+SetDirectory[NotebookDirectory[]];
+booleanRulesTable=Import["../data/EcoliCore/core_regulatory_rules.xls.gz"][[1]];
+separators={"metabolic genes","regulatory genes and rules","metabolite inputs","reaction inputs"};
+sepRows=(Position[booleanRulesTable,#][[1]]&/@separators)[[All,1]];
+booleanRules=booleanRulesTable[[sepRows[[1]];;sepRows[[2]]-1]][[All,1;;3]];
+booleanRules2=booleanRulesTable[[sepRows[[2]];;sepRows[[3]]-1]][[All,1;;3]];
+metInputs=booleanRulesTable[[sepRows[[3]];;sepRows[[4]]-1]][[All,2]];
+rxnInputs=booleanRulesTable[[sepRows[[4]];;-3]][[All,2]];
+
+
+parseStrLogic[str_String]:=Module[{str2},
+(*Parse metabolites*)
+str2=StringReplace[str,RegularExpression["([\\w-]+)\\[([\\w-]+)\\]"]:>"metabolite[\"$1\",\"$2\"]"];
+ToExpression[StringReplace[str2,{"_"->"UNDERSCORE","NOT"->"!","OR"->"||","AND"->"&&"}]]
+]
+
+
+parseStrLogic[str_String]:=Module[{str2},
+(*Parse metabolites*)
+str2=StringReplace[str,RegularExpression["([\\w-]+)\\[([\\w-]+)\\]"]:>"metabolite[\"$1\",\"$2\"]"];
+ToExpression[StringReplace[str2,{"_"->"UNDERSCORE","NOT"->"!","OR"->"||","AND"->"&&"}]]
+]
+
+
+symbol2rxn=ToExpression@StringReplace[#,"_"->"UNDERSCORE"]->#&/@rxnInputs;
+
+
+symbol2prot=Cases[booleanRules2,l_List/;l[[1]]!="":>Symbol[l[[2]]]->protein[l[[2]]]];
+
+
+TableForm[ruleSet1=Replace[(gene[#[[1]]]->parseStrLogic[#[[3]]]&/@booleanRules)/.symbol2prot/.symbol2rxn,s_Symbol:>parameter[StringReplace[ToString[s],"UNDERSCORE"->"_"]],\[Infinity],Heads->False]]
+
+
+TableForm[ruleSet3=Replace[Cases[booleanRules2,l_List/;l[[1]]=="":>parameter[l[[2]]]->parseStrLogic[l[[3]]]]/.symbol2rxn/.symbol2prot,s_Symbol:>parameter[StringReplace[ToString[s],"UNDERSCORE"->"_"]],\[Infinity],Heads->False]]
+
+
+TableForm[ruleSet2=Replace[Cases[booleanRules2,l_List/;l[[1]]!="":>protein[l[[2]]]->parseStrLogic[l[[3]]]]/.symbol2rxn/.symbol2prot,s_Symbol:>parameter[StringReplace[ToString[s],"UNDERSCORE"->"_"]],\[Infinity],Heads->False]]
 
 
 SetDirectory[NotebookDirectory[]];
