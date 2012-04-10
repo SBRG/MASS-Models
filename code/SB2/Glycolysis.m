@@ -3,6 +3,7 @@
 <<MASStoolbox`
 <<XML`
 SetDirectory[NotebookDirectory[]];
+SetDirectory[".."];
 <<util`
 
 
@@ -56,7 +57,7 @@ perc=calcPERC[glycolysis];
 updateModelAttribute[glycolysis,"Parameters",perc];
 
 SetDirectory[NotebookDirectory[]];
-Export["../models/SB2/glycolysis.m.gz",glycolysis]
+Export["../../models/SB2/glycolysis.m.gz",glycolysis]
 
 
 glycolysis["Notes"]
@@ -68,40 +69,6 @@ glycolysis["Notes"]
 
 {concSol,fluxSol}=simulate[glycolysis,{t,0,1000}];
 plotSimulation[concSol,{t,0,1000}]
-
-
-Unprotect[plotSimulation];
-Options[plotSimulation]=updateRules[Union[Options[LogLogPlot],Options[ListPlot]],{"PlotFunction"->LogLogPlot,"Tooltipped"->True,"ZeroFac"->1*^-6,Joined->True,"Legend"->False}];
-plotSimulation[simulation:{_Rule..},{t_Symbol,tMin_?NumberQ,tMax_?NumberQ,tStep_:.1},opts:OptionsPattern[]]:=Module[{interPolDat,numericalDat,plotFunction,plotOpts,fac,interPolPlot,numericalPlotFunction,numericalPlot,legend},
-interPolDat=Cases[simulation,r_Rule/;MemberQ[r,InterpolatingFunction[__][_],\[Infinity]],\[Infinity]];
-numericalDat=DeleteCases[Complement[simulation,interPolDat],r_Rule/;r[[2]]==0.];
-numericalDat=If[OptionValue["Tooltipped"],Thread[Tooltip[numericalDat[[All,2]],numericalDat[[All,1]]]],numericalDat[[All,2]]];
-interPolDat=If[OptionValue["Tooltipped"],Thread[Tooltip[Evaluate@interPolDat[[All,2]],StandardForm/@interPolDat[[All,1]]]],interPolDat[[All,2]]];
-plotFunction=OptionValue["PlotFunction"];
-numericalPlotFunction=ToExpression["List"<>ToString[plotFunction]];
-legend=If[OptionValue["Legend"]=!=False,Epilog->If[OptionQ[OptionValue["Legend"]],insetLegend[StandardForm/@simulation[[All,1]],Evaluate[Sequence@@OptionValue["Legend"]]],insetLegend[StandardForm/@simulation[[All,1]]]],Epilog->{}];
-If[interPolDat!={},
-plotOpts=FilterRules[{opts},Options[plotFunction]];
-fac=If[tMin==0&&(plotFunction===LogLogPlot||plotFunction===LogLinearPlot),OptionValue["ZeroFac"],0.];
-Quiet@Check[interPolPlot=plotFunction[Evaluate[interPolDat],{t,Evaluate[tMin+fac],tMax},Evaluate[Sequence@@plotOpts],Evaluate[legend]],None,InterpolatingFunction::dmval];,
-interPolPlot={};
-];
-If[numericalDat!={},
-numericalPlot=numericalPlotFunction[numericalDat[[All,2]],PlotRange->{{Evaluate[tMin+fac],tMax},All},Sequence@@FilterRules[{opts},Options[numericalPlotFunction]]],numericalPlot={}];
-Show[Sequence@@Flatten[{interPolPlot,numericalPlot}]]
-];
-plotSimulation[simulation:{_Rule..},opts:OptionsPattern[]]:=Module[{tStart,tEnd},
-{tStart,tEnd}={Max[#[[1]]],Min[#[[2]]]}&@Transpose[Cases[simulation,InterpolatingFunction[{{start_,end_}},___][_]:>{start,end},\[Infinity]]];
-plotSimulation[simulation,{t,tStart,tEnd},opts]
-];
-def:plotSimulation[___]:=(Message[MASS::badargs,plotSimulation,Defer@def];Abort[])
-Protect[plotSimulation];
-
-
-Tooltip[1,m["atp"],LabelStyle->{Background->Green,CellFrameColor->Blue,CellFrame->3}]
-
-
-Tooltip[1,Rasterize[m["atp"]],LabelStyle->Directive[Red,Bold]]
 
 
 {concSol,fluxSol}=simulate[glycolysis,{t,0,1000},Parameters->{MASStoolbox`MASS`rateconst["vatp", True]->2}];
