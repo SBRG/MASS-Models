@@ -46,9 +46,17 @@ gr=DeleteCases[("id"/.Dispatch[#[[2]]])->(xmlReaction2geneAssociation@#)&/@listO
 (*SBML2MODEL*)
 
 
+(* ::Subsection:: *)
+(*Read GPRs*)
+
+
 SetDirectory[NotebookDirectory[]];
 gprData=Import["../data/EcoliCore/Ecoli_core_GPRs.csv.gz"];
 gpr=simphenyGPRr2gpr[gprData[[2;;]]];
+
+
+(* ::Subsection:: *)
+(*Read boolean regulatory model*)
 
 
 SetDirectory[NotebookDirectory[]];
@@ -78,7 +86,13 @@ ToExpression[StringReplace[str2,{"_"->"UNDERSCORE","NOT"->"!","OR"->"||","AND"->
 symbol2rxn=ToExpression@StringReplace[#,"_"->"UNDERSCORE"]->#&/@rxnInputs;
 
 
+symbol2rxn
+
+
 symbol2prot=Cases[booleanRules2,l_List/;l[[1]]!="":>Symbol[l[[2]]]->protein[l[[2]]]];
+
+
+symbol2prot
 
 
 TableForm[ruleSet1=Replace[(gene[#[[1]]]->parseStrLogic[#[[3]]]&/@booleanRules)/.symbol2prot/.symbol2rxn,s_Symbol:>parameter[StringReplace[ToString[s],"UNDERSCORE"->"_"]],\[Infinity],Heads->False]]
@@ -88,6 +102,10 @@ TableForm[ruleSet3=Replace[Cases[booleanRules2,l_List/;l[[1]]=="":>parameter[l[[
 
 
 TableForm[ruleSet2=Replace[Cases[booleanRules2,l_List/;l[[1]]!="":>protein[l[[2]]]->parseStrLogic[l[[3]]]]/.symbol2rxn/.symbol2prot,s_Symbol:>parameter[StringReplace[ToString[s],"UNDERSCORE"->"_"]],\[Infinity],Heads->False]]
+
+
+(* ::Subsection:: *)
+(*Import model from SBML and translate to MASSmodel*)
 
 
 SetDirectory[NotebookDirectory[]];
@@ -102,7 +120,27 @@ setModelAttribute[ecolicore,"InitialConditions",{}];
 setModelAttribute[ecolicore,"Notes",defaultInitializationNotes[]];
 
 
-ecolicore["Notes"]
+(* ::Subsection:: *)
+(*Estimate Keq using GCM estimates from equilibrator*)
+
+
+SetDirectory[NotebookDirectory[]];
+bigg2equilibrator=Import["../Data/bigg2equilibratorViaKEGG.m.gz"];
+
+
+dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.1 Mole Liter^-1,pH->7.]
+
+
+dGofRxn//Short
+
+
+keq=dG2keq[dGofRxn];
+
+
+keq//Short
+
+
+updateModelAttribute[ecolicore,"Parameters",keq]
 
 
 SetDirectory[NotebookDirectory[]];
