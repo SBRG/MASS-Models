@@ -24,3 +24,6 @@ tmp3=Flatten[StringSplit[tmp2,RegularExpression["<reaction id="]][[1]][[2;;]]];
 tmp4=Quiet@StringCases[#,RegularExpression["(?s)^(\"R_.+?\").+\"LOWER_BOUND\"\\s*?value=\"([-\\d\\.]+)\".+?\"UPPER_BOUND\"\\s*?value=\"([\\d\\.]+)\".+?\"FLUX_VALUE\"\\s*?value=\"(.+?)\""]:>{"$1"->{ToExpression@"$2",ToExpression@"$3",ToExpression@"$4"}}]&/@tmp3;
 Flatten[tmp4]/.s_String:>StringReplace[s,{"\""->""}]
 ];
+
+
+biggCommonStringReplacements={"_FSLASH_"->"/","_DASH_"->"-","_LPAREN_"->"(","_RPAREN_"->")","_LSQBKT_"->"[","_RSQBKT_"->"]",RegularExpression["^R_"]->"",RegularExpression["^M_(.*)_[^_]+$"]->"$1"};

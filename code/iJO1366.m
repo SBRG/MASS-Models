@@ -26,8 +26,7 @@ referenceFluxes=#[[1]]->#[[2,-1]]&/@referenceFluxesPlusBounds;
 
 
 SetDirectory[NotebookDirectory[]];
-model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"]/.s_String:>StringReplace[s,
-{RegularExpression["^M_"]->"",RegularExpression["^R_"]->""}]/.m_metabolite:>metabolite[StringReplace[getID[m],{RegularExpression["_[^_]+$"]->"","_DASH_"->"-","_LSQBKT_"->"[","_RSQBKT_"->"]"}],getCompartment[m]];
+model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"]//.s_String:>StringReplace[s,biggCommonStringReplacements]
 setModelAttribute[model,"GPR",gpr];
 updateModelAttribute[model,"Constraints",referenceBounds];
 setModelAttribute[model,"Notes",defaultInitializationNotes[]];
