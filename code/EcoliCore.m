@@ -109,7 +109,7 @@ TableForm[ruleSet2=Replace[Cases[booleanRules2,l_List/;l[[1]]!="":>protein[l[[2]
 
 
 SetDirectory[NotebookDirectory[]];
-ecolicore=sbml2model["../data/EcoliCore/EcoliCore.xml.gz",BIGG->True];
+ecolicore=sbml2model["../data/EcoliCore/EcoliCore.xml.gz",Method->"Light"]//.s_String:>StringReplace[s,biggCommonStringReplacements];
 revExchanges=r[getID@#,getProducts@#,getSubstrates@#,Reverse[getStoich@#],reversibleQ@#]&/@ecolicore["Exchanges"];
 ecolicore=deleteReactions[ecolicore,getID/@ecolicore["Exchanges"]];
 ecolicore=addReactions[ecolicore,revExchanges];
@@ -128,7 +128,16 @@ SetDirectory[NotebookDirectory[]];
 bigg2equilibrator=Import["../Data/bigg2equilibratorViaKEGG.m.gz"];
 
 
-dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.1 Mole Liter^-1,pH->7.]
+dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.1 Mole Liter^-1,pH->7.4]
+
+
+stripUnits
+
+
+FullForm[MASStoolbox`Thermodynamics`dGstd["ACALD", MASStoolbox`Thermodynamics`is -> 0, MASStoolbox`Thermodynamics`pH -> 7.]->-10.734740195112181`]
+
+
+ExportString[List@@@(stripUnits@dGofRxn/.d_dGstd:>getID[d]),"TSV"]
 
 
 dGofRxn//Short

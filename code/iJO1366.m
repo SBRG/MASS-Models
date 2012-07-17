@@ -28,7 +28,7 @@ referenceFluxes=#[[1]]->#[[2,-1]]&/@referenceFluxesPlusBounds;
 SetDirectory[NotebookDirectory[]];
 model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"]//.s_String:>StringReplace[s,biggCommonStringReplacements]
 setModelAttribute[model,"GPR",gpr];
-updateModelAttribute[model,"Constraints",referenceBounds];
+updateModelAttribute[model,"Constraints",referenceBounds//.s_String:>StringReplace[s,biggCommonStringReplacements]];
 setModelAttribute[model,"Notes",defaultInitializationNotes[]];
 
 
@@ -45,6 +45,9 @@ Export["../models/iJO1366/iJO1366.m.gz",model]
 
 SetDirectory[NotebookDirectory[]];
 iJO1366=Import["../models/iJO1366/iJO1366.m.gz"];
+
+
+iJO1366["Constraints"]
 
 
 biomassRxn=Cases[iJO1366["Fluxes"],s_String/;StringMatchQ[s,RegularExpression[".*bio.*"]],\[Infinity]][[1]]
