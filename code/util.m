@@ -14,7 +14,7 @@ xmlReaction2geneAssociation=If[Length[#]>0,#[[1]],#]&@Cases[Cases[#[[3]],XMLElem
 
 
 defaultInitializationNotes="Model constructed on "<>DateString[]<>" by "<>$UserName<>" on "<>$MachineName<>"."<>$MachineDomain<>
-" using "<>$Version<>" at the following geodetic location: "<>("latitude "<>ToString[#[[1]]]<>"; longitude "<>ToString[#[[2]]]&@FindGeoLocation[])&;
+" using Mathematica "<>$Version<>" at the following geodetic location: "<>("latitude "<>ToString[#[[1]]]<>"; longitude "<>ToString[#[[2]]]&@FindGeoLocation[])&;
 
 
 getReferenceFluxesAndBoundsFromXML[path_String]:=Block[{tmp,tmp2,tmp3,tmp4},
