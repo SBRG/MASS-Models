@@ -31,7 +31,7 @@ steadyStateConcentrations={m["glu", "c"] -> 1., m["g6p", "c"] -> 0.0486, m["f6p"
 glycolysis=constructModel[rxns,
 "ElementalComposition"->chemicalFormulas,
 "Ignore"->{m["h","c"],m["h2o","c"]},
-"CustomRateLaws"->{"vh"->MASStoolbox`MASS`rateconst["vh", True](m["h","c"]-m["h", "Xt"] /MASStoolbox`MASS`Keq["vh"]),"vh2o"->MASStoolbox`MASS`rateconst["vh2o", True](m["h2o","c"]-m["h2o", "Xt"] /MASStoolbox`MASS`Keq["vh2o"])},
+"CustomRateLaws"->{"vh"->MASStoolbox`MASS`rateconst["vh", True](m["h","c"][t]-m["h", "Xt"] /MASStoolbox`MASS`Keq["vh"]),"vh2o"->MASStoolbox`MASS`rateconst["vh2o", True](m["h2o","c"][t]-m["h2o", "Xt"] /MASStoolbox`MASS`Keq["vh2o"])},
 "InitialConditions"->steadyStateConcentrations,
 "Parameters"->Join[equilibriumConstants,externalFixedConc],
 "Notes"->defaultInitializationNotes[]
@@ -52,12 +52,15 @@ solution=Flatten[Transpose[givenststfluxes.null]];
 steadyStateFluxes=Thread[Rule[glycolysis["Fluxes"],solution]];
 
 updateModelAttribute[glycolysis,"InitialConditions",steadyStateFluxes];
-perc=calcPERC[glycolysis];
+perc=calcPERC[glycolysis]/.Undefined->100000;
 (*perc=updateRules[perc,{Subsuperscript[k, vapk, \[LongRightArrow]]->1,Subsuperscript[k, vh2o, \[LongRightArrow]]->100000}]*)
 updateModelAttribute[glycolysis,"Parameters",perc];
 
 SetDirectory[NotebookDirectory[]];
 Export["../../models/SB2/glycolysis.m.gz",glycolysis]
+
+
+perc
 
 
 glycolysis["Notes"]
