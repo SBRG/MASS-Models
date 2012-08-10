@@ -55,7 +55,7 @@ gprData=Import["../data/EcoliCore/Ecoli_core_GPRs.csv.gz"];
 gpr=simphenyGPRr2gpr[gprData[[2;;]]];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Read boolean regulatory model*)
 
 
@@ -128,19 +128,7 @@ SetDirectory[NotebookDirectory[]];
 bigg2equilibrator=Import["../Data/bigg2equilibratorViaKEGG.m.gz"];
 
 
-dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.1 Mole Liter^-1,pH->7.4]
-
-
-stripUnits
-
-
-FullForm[MASStoolbox`Thermodynamics`dGstd["ACALD", MASStoolbox`Thermodynamics`is -> 0, MASStoolbox`Thermodynamics`pH -> 7.]->-10.734740195112181`]
-
-
-ExportString[List@@@(stripUnits@dGofRxn/.d_dGstd:>getID[d]),"TSV"]
-
-
-dGofRxn//Short
+dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.25 Mole Liter^-1,pH->7.6]
 
 
 keq=dG2keq[dGofRxn];
