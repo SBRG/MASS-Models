@@ -118,6 +118,7 @@ ecolicore=addReactions[ecolicore,additionalRxns];
 setModelAttribute[ecolicore,"GPR",gpr];
 setModelAttribute[ecolicore,"InitialConditions",{}];
 setModelAttribute[ecolicore,"Notes",defaultInitializationNotes[]];
+setIgnore[ecolicore,{m["h","c"],m["h2o","c"]}];
 
 
 (* ::Subsection:: *)
@@ -134,10 +135,13 @@ dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.25 Mole Liter^-
 keq=dG2keq[dGofRxn];
 
 
-keq//Short
+keqAdjusted=adjustUnits[keq,ecolicore["Reactions"],Ignore->ecolicore["Ignore"],DefaultAmountUnit->Mole];
 
 
-updateModelAttribute[ecolicore,"Parameters",keq]
+updateParameters[ecolicore,keqAdjusted];
+
+
+ecolicore["Parameters"]
 
 
 SetDirectory[NotebookDirectory[]];
