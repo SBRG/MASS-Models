@@ -5,6 +5,7 @@
 <<XML`
 SetDirectory[NotebookDirectory[]];
 <<util`
+bigg2equilibrator=Import["../data/bigg2equilibratorViaKEGG.m.gz"];
 
 
 (* ::Title:: *)
@@ -15,7 +16,7 @@ SetDirectory[NotebookDirectory[]];
 (*SBML2MODEL*)
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Import model from SBML and translate to MASSmodel*)
 
 
@@ -32,6 +33,7 @@ Flatten[tmp4]/.s_String:>StringReplace[s,{"\""->""}]
 ];
 
 
+SetDirectory[NotebookDirectory[]];
 iABrefBounds=#[[1]]->#[[2,1;;2]]&/@(getReferenceFluxesAndBoundsFromXML["../data/iAB-RBC-238/1752-0509-5-110-s5.xml.gz"]//.s_String:>StringReplace[s,biggCommonStringReplacements]);
 
 
@@ -64,17 +66,53 @@ elementalComposition=str2mass[#[[1]]]->formula2elementalComposition[#[[4]]]&/@De
 (*Build model*)
 
 
+<<MASStoolbox`
+
+
+constructModel[str2mass/@{"1: h[c] + h2o[e] <=> h[e] + h2o[c]"}]["Rates"]
+constructModel[str2mass/@{"1: h[c] + h2o[e] <=> h[e] + h2o[c]"},Ignore->{m["h",_]}]["Rates"]
+
+
+FilterRules[{m["h2o","c"]->2,m["h","c"]->1,m["h","e"]->2},Except[{m["h",_]}]]
+
+
+ignore={m["go6p",_]};
+
+
+Alternatives@@ignore
+
+
+DeleteCases[ppp["Rates"],(((m:$MASS$speciesPattern)^_)|((m:$MASS$speciesPattern[t])))/;MatchQ[m[[0]],Alternatives@@ignore],\[Infinity]]
+
+
 SetDirectory[NotebookDirectory[]];
-rbcReactions=(sbml2model["../data/iAB-RBC-238/1752-0509-5-110-s5.xml.gz", Method->"Light"]//.s_String:>StringReplace[s,biggCommonStringReplacements])["Reactions"];
+rbcReactions=(sbml2model["../data/iAB-RBC-238/1752-0509-5-110-s5.xml.gz", Method->"Light"])["Reactions"]//.s_String:>StringReplace[s,biggCommonStringReplacements];
 correctRxnsAndBounds=Table[
 	bnds=getID[rxn]/.iABrefBounds;
 	If[!reversibleQ[rxn],Switch[bnds,{a_/;a<0,b_/;b<=0},Reverse@rxn->Abs[Reverse[bnds]],_,rxn->(bnds)],rxn->(bnds)]
 	,{rxn,rbcReactions}
 ];
-rbc=constructModel[correctRxnsAndBounds[[All,1]],Constraints->(getID[#[[1]]]->#[[2]]&/@correctRxnsAndBounds)];
-updateNotes[rbc,defaultInitializationNotes[]];
+rbc=constructModel[correctRxnsAndBounds[[All,1]],Constraints->(getID[#[[1]]]->#[[2]]&/@correctRxnsAndBounds),Ignore->{m["h",_],m["h2o",_]}];
+updateNotes[rbc,defaultInitializationNotes[]<>"\n This model covers the iAB-RBC-238 reconstruction by Aarash Bordbard."];
 setGPR[rbc,protAssoc];
+setID[rbc,"iAB-RBC-238"];
 setElementalComposition[rbc,elementalComposition];
+dg=Quiet[calcDeltaG[rbc["Reactions"],bigg2equilibrator,is->0.25 Mole Liter^-1,pH->7.3],{calcDeltaG::missingPseudoisomerData}];
+Print["Proportion of reactions without thermodynamic information."];
+Count[dg,r_Rule/;r[[2]]===Undefined]/N@Length[rbc\[Transpose]]
+keq=dG2keq[DeleteCases[dg,r_Rule/;r[[2]]===Undefined]];
+keq=adjustUnits[keq,rbc,DefaultAmountUnit->Mole];
+updateParameters[rbc,keq];
+
+
+Reverse@SortBy[Tally[Cases[Flatten[getSpecies/@rbc["Reactions"]]/.bigg2equilibrator,_metabolite]],Last]
+
+
+DeleteCases[stripUnits@dg[[All,2]],Undefined]//Length
+
+
+Histogram[DeleteCases[stripUnits@dg[[All,2]],Undefined],FrameLabel->{"dG","Frequency"}]
+Histogram[Log[10,stripUnits@FilterRules[rbc["Parameters"],_Keq][[All,2]]],FrameLabel->{"Keq [log10]","Frequency"}]
 
 
 stoichiometricallyConsistentQ[rbc]
@@ -90,6 +128,10 @@ rbc["Proteins"]//Union//Length
 
 SetDirectory[NotebookDirectory[]];
 Export["../models/iAB-RBC-238/iAB-RBC-238.m.gz",rbc]
+
+
+(*SetDirectory[NotebookDirectory[]];
+Export["../models/iAB-RBC-238/iAB-RBC-238.xml",model2sbml[rbc]]*)
 
 
 getNotes@rbc
@@ -136,7 +178,7 @@ metabolite["gl6p",comp_]:>metabolite["6pgl",comp],metabolite["go6p",comp_]:>meta
 metabolite["gssg",comp_]:>metabolite["gthox",comp],metabolite["gsh",comp_]:>metabolite["gthrd",comp],metabolite["ado",comp_]:>metabolite["adn",comp],metabolite["ino",comp_]:>metabolite["ins",comp],metabolite["hyp",comp_]:>metabolite["hxan",comp]};
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Glycolysis*)
 
 
@@ -146,6 +188,9 @@ rbc=Import["../models/iAB-RBC-238/iAB-RBC-238.m.gz"];
 
 SetDirectory[NotebookDirectory[]];
 glycolysis=Import["../models/SB2/glycolysis.m.gz"];
+
+
+plotSimulation[simulate[glycolysis,{t,0,100}][[1]]]/.m:$MASS$speciesPattern:>ToString[m]
 
 
 sb2ToiAB={"vhk"->"HEX1","vpgi"->"PGI","vpfk"->"PFK","vtpi"->"TPI","vald"->"FBA",
@@ -164,16 +209,57 @@ sb2ToiABnew={"vhk"->"HEX1","vpgi"->"PGI","vpfk"->"PFK","vtpi"->"TPI","vald"->"FB
 "vldh"->"LDH_L","vapk"->"ADK1","vpyr"->"Sink_pyr_c","vlac"->"Sink_lac-L_c","vatp"->"ATP_hydrolysis","vnadh"->"NADH_oxidation","vgluin"->"Sink_glc-D_c","vh"->"Sink_h_c","vh2o"->"Sink_h2o_c"};
 
 
-iABglycolysis=subModel[rbc,DeleteCases[glycolysis["Fluxes"]/.sb2ToiAB,_Missing]];
+getID/@glycolysis["Fluxes"]/.sb2ToiAB
+
+
+v/@DeleteCases[getID/@glycolysis["Fluxes"]/.sb2ToiAB,_Missing]
+
+
+glycolysis["Parameters"]
+
+
+iABglycolysis=subModel[rbc,DeleteCases[getID/@glycolysis["Fluxes"]/.sb2ToiAB,_Missing]];
+
+
+glycolysis["InitialConditions"]
+
+
+FilterRules[glycolysis["Parameters"],_rateconst]
+FilterRules[glycolysis["Parameters"],_Keq]
+
+
+MASStoolbox`MASS`v["vh"]->(0.0026880000000000003` Mole)/(Hour Liter)
+
+
+calcPERC[glycolysis]
+
+
+glycolysis["Rates"]
+
+
+glycolysis["CustomRateLaws"]
+
+
+iABglycolysis["Rates"]
+
+
+glycolysis["Ignore"]
+
+
+iABglycolysis=subModel[rbc,DeleteCases[getID/@glycolysis["Fluxes"]/.sb2ToiAB,_Missing]];
+setID[iABglycolysis,"iAB-RBC-238-Glycolysis"];
+setIgnore[iABglycolysis,{m["h",_],m["h2o",_]}]
 iABglycolysis=addSinks[iABglycolysis,{MASStoolbox`MASS`metabolite["pyr", "c"],MASStoolbox`MASS`metabolite["lac-L", "c"],MASStoolbox`MASS`metabolite["glc-D", "c"],MASStoolbox`MASS`metabolite["h", "c"],MASStoolbox`MASS`metabolite["h2o", "c"]}];
 iABglycolysis=addReactions[iABglycolysis,{MASStoolbox`MASS`reaction["ATP_hydrolysis", {MASStoolbox`MASS`metabolite["atp", "c"], MASStoolbox`MASS`metabolite["h2o", "c"]}, {MASStoolbox`MASS`metabolite["adp", "c"], MASStoolbox`MASS`metabolite["h", "c"], MASStoolbox`MASS`metabolite["pi", "c"]}, {1, 1, 1, 1, 1}, True],MASStoolbox`MASS`reaction["NADH_oxidation", {MASStoolbox`MASS`metabolite["nadh", "c"]}, {MASStoolbox`MASS`metabolite["h", "c"], MASStoolbox`MASS`metabolite["nad", "c"]}, {1, 1, 1}, True]}];
 setInitialConditions[iABglycolysis,Join[
-{MASStoolbox`MASS`metabolite["glc-D", "c"]->1.`,MASStoolbox`MASS`metabolite["g6p", "c"]->0.0486`,MASStoolbox`MASS`metabolite["f6p", "c"]->0.0198`,MASStoolbox`MASS`metabolite["fdp", "c"]->0.0146`,MASStoolbox`MASS`metabolite["dhap", "c"]->0.16`,MASStoolbox`MASS`metabolite["g3p", "c"]->0.00728`,MASStoolbox`MASS`metabolite["13dpg", "c"]->0.000243`,MASStoolbox`MASS`metabolite["3pg", "c"]->0.0773`,MASStoolbox`MASS`metabolite["2pg", "c"]->0.0113`,MASStoolbox`MASS`metabolite["pep", "c"]->0.017`,MASStoolbox`MASS`metabolite["pyr", "c"]->0.060301`,MASStoolbox`MASS`metabolite["lac-L", "c"]->1.36`,MASStoolbox`MASS`metabolite["nad", "c"]->0.0589`,MASStoolbox`MASS`metabolite["nadh", "c"]->0.0301`,MASStoolbox`MASS`metabolite["amp", "c"]->0.08672812499999999`,MASStoolbox`MASS`metabolite["adp", "c"]->0.29`,MASStoolbox`MASS`metabolite["atp", "c"]->1.6`,MASStoolbox`MASS`metabolite["pi", "c"]->2.5`,MASStoolbox`MASS`metabolite["h", "c"]->0.00008997573444801929`,MASStoolbox`MASS`metabolite["h2o", "c"]->1.`},
-{"HEX1"->1.12`,"PGI"->1.12`,"PFK"->1.12`,"TPI"->1.12`,"FBA"->1.12`,"GAPD"->2.24`,"PGK"->-2.24`,"PGM"->-2.24`,"ENO"->2.24`,"PYK"->2.24`,"LDH_L"->-2.016`,"ADK1"->0.`,"Sink_pyr_c"->0.22400000000000003`,"Sink_lac-L_c"->2.016`,"ATP_hydrolysis"->2.24`,
+#[[1]]->Convert[#[[2]]Milli Mole Liter^-1,Mole Liter^-1]&/@{MASStoolbox`MASS`metabolite["glc-D", "c"]->1.`,MASStoolbox`MASS`metabolite["g6p", "c"]->0.0486`,MASStoolbox`MASS`metabolite["f6p", "c"]->0.0198`,MASStoolbox`MASS`metabolite["fdp", "c"]->0.0146`,MASStoolbox`MASS`metabolite["dhap", "c"]->0.16`,MASStoolbox`MASS`metabolite["g3p", "c"]->0.00728`,MASStoolbox`MASS`metabolite["13dpg", "c"]->0.000243`,MASStoolbox`MASS`metabolite["3pg", "c"]->0.0773`,MASStoolbox`MASS`metabolite["2pg", "c"]->0.0113`,MASStoolbox`MASS`metabolite["pep", "c"]->0.017`,MASStoolbox`MASS`metabolite["pyr", "c"]->0.060301`,MASStoolbox`MASS`metabolite["lac-L", "c"]->1.36`,MASStoolbox`MASS`metabolite["nad", "c"]->0.0589`,MASStoolbox`MASS`metabolite["nadh", "c"]->0.0301`,MASStoolbox`MASS`metabolite["amp", "c"]->0.08672812499999999`,MASStoolbox`MASS`metabolite["adp", "c"]->0.29`,MASStoolbox`MASS`metabolite["atp", "c"]->1.6`,MASStoolbox`MASS`metabolite["pi", "c"]->2.5`,MASStoolbox`MASS`metabolite["h", "c"]->0.00008997573444801929`,MASStoolbox`MASS`metabolite["h2o", "c"]->1.`},
+#[[1]]->Convert[#[[2]]Milli Mole Liter^-1 Hour^-1,Mole Liter^-1 Hour^-1]&/@{"HEX1"->1.12`,"PGI"->1.12`,"PFK"->1.12`,"TPI"->1.12`,"FBA"->1.12`,"GAPD"->2.24`,"PGK"->-2.24`,"PGM"->-2.24`,"ENO"->2.24`,"PYK"->2.24`,"LDH_L"->-2.016`,"ADK1"->0.`,"Sink_pyr_c"->0.22400000000000003`,"Sink_lac-L_c"->2.016`,"ATP_hydrolysis"->2.24`,
 "NADH_oxidation"->0.22400000000000003`,"Sink_glc-D_c"->-1.12`,"Sink_h_c"->2.688`,"Sink_h2o_c"->0.`}
 ]];
-setParameters[iABglycolysis,{MASStoolbox`MASS`parameter["Volume", "c"]->1,MASStoolbox`MASS`Keq["HEX1"]->850,MASStoolbox`MASS`Keq["PGI"]->0.41`,MASStoolbox`MASS`Keq["PFK"]->310,MASStoolbox`MASS`Keq["TPI"]->0.05714285714285714`,MASStoolbox`MASS`Keq["FBA"]->0.082`,MASStoolbox`MASS`Keq["GAPD"]->0.0179`,MASStoolbox`MASS`Keq["PGK"]->1/1800,MASStoolbox`MASS`Keq["PGM"]->6.8`,MASStoolbox`MASS`Keq["ENO"]->1.6949152542372883`,MASStoolbox`MASS`Keq["PYK"]->363000,MASStoolbox`MASS`Keq["LDH_L"]->1/26300,MASStoolbox`MASS`Keq["ADK1"]->0.6060606060606061`,MASStoolbox`MASS`Keq["Sink_pyr_c"]->1.`,MASStoolbox`MASS`Keq["Sink_lac-L_c"]->1.`,MASStoolbox`MASS`Keq["ATP_hydrolysis"]->\[Infinity],MASStoolbox`MASS`Keq["NADH_oxidation"]->\[Infinity],MASStoolbox`MASS`Keq["Sink_glc-D_c"]->0,MASStoolbox`MASS`Keq["Sink_h_c"]->1.`,MASStoolbox`MASS`Keq["Sink_h2o_c"]->1.`,MASStoolbox`MASS`metabolite["pyr", "Xt"]->0.06`,MASStoolbox`MASS`metabolite["amp", "Xt"]->1,MASStoolbox`MASS`metabolite["h", "Xt"]->0.00006309573444801929`,metabolite[_,"Xt"]->1}];
-setIgnore[iABglycolysis,{m["h","c"],m["h2o","c"]}]
+xtrnalConc=#[[1]]->#[[2]]Milli Mole Liter^-1&/@{MASStoolbox`MASS`metabolite["pyr", "Xt"]->0.06`,MASStoolbox`MASS`metabolite["amp", "Xt"]->1,MASStoolbox`MASS`metabolite["h", "Xt"]->0.00006309573444801929`,metabolite[_,"Xt"]->1};
+setParameters[iABglycolysis,Join[{MASStoolbox`MASS`parameter["Volume", "c"]->Liter,MASStoolbox`MASS`Keq["HEX1"]->850,MASStoolbox`MASS`Keq["PGI"]->0.41`,MASStoolbox`MASS`Keq["PFK"]->310,MASStoolbox`MASS`Keq["TPI"]->0.05714285714285714`,MASStoolbox`MASS`Keq["FBA"]->0.082`,MASStoolbox`MASS`Keq["GAPD"]->0.0179`,MASStoolbox`MASS`Keq["PGK"]->1/1800,MASStoolbox`MASS`Keq["PGM"]->6.8`,
+MASStoolbox`MASS`Keq["ENO"]->1.6949152542372883`,MASStoolbox`MASS`Keq["PYK"]->363000,MASStoolbox`MASS`Keq["LDH_L"]->1/26300,MASStoolbox`MASS`Keq["ADK1"]->0.6060606060606061`,MASStoolbox`MASS`Keq["Sink_pyr_c"]->1.`,MASStoolbox`MASS`Keq["Sink_lac-L_c"]->1.`,MASStoolbox`MASS`Keq["ATP_hydrolysis"]->\[Infinity],MASStoolbox`MASS`Keq["NADH_oxidation"]->\[Infinity],MASStoolbox`MASS`Keq["Sink_glc-D_c"]->0,MASStoolbox`MASS`Keq["Sink_h_c"]->1.,MASStoolbox`MASS`Keq["Sink_h2o_c"]->1.`},xtrnalConc]];
+
 setBoundaryConditions[iABglycolysis,{m["h","c"],m["h2o","c"]}]
 perc=calcPERC[iABglycolysis,"AtEquilibriumDefault"->1];
 updateParameters[iABglycolysis,perc];
@@ -183,28 +269,21 @@ SetDirectory[NotebookDirectory[]];
 Export["../models/iAB-RBC-238/iAB-RBC-238-Glycolysis.m.gz",iABglycolysis]
 
 
-getNotes@iABglycolysis
+iABglycolysis["Reactions"]
 
 
-plotSimulation[simulate[iABglycolysis,{t,0,10}][[1]]/.m_metabolite:>ToString[m]]
+SortBy[perc,Last]
 
 
-elementallyBalancedQ[iABglycolysis]
+{concSol,fluxSol}=simulate[iABglycolysis,{t,0,1000}];
+plotSimulation[concSol]/.m_metabolite:>getID[m]
 
 
-stoichiometricallyConsistentQ[iABglycolysis]
+{concSol,fluxSol}=simulate[iABglycolysis,{t,0,1000},Parameters->{rateconst["ATP_hydrolysis",True]->2}];
+plotSimulation[concSol]/.m_metabolite:>getID[m]
 
 
-Chop[iABglycolysis.(iABglycolysis["Fluxes"]/.iABglycolysis["InitialConditions"])]
-
-
-visualizePathways[reactions2bipartite[iABglycolysis["Reactions"]],
-DirectedEdges->True,PlotStyle->{GrayLevel[0.5`],Arrowheads[.012]},
-"MetaboliteRenderingFunction"->({Style[Text[StandardForm@#2,#1],
-Background->Opacity[.6,White]]}&),"ReactionRenderingFunction"->({Style[Text[StandardForm@#2,#1],Larger,Background->Opacity[.6,LightGray]]}&),ImageSize->800,MultiedgeStyle->None]
-
-
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Pentose phosphate pathway*)
 
 
@@ -216,7 +295,7 @@ SetDirectory[NotebookDirectory[]];
 ppp=Import["../models/SB2/ppp.m.gz"];
 
 
-sb2ToiAB={"vg6pdh"->"G6PDH2r","vpglase"->"PGL","vgl6pdh"->"GND","vr5pe"->"RPE","vr5pi"->"RPI","vtki"->"TKT1","vtkii"->"TKT2","vtala"->"TALA","vgssgr"->"GTHO"}
+sb2ToiAB={"vg6pdh"->"G6PDH2r","vpglase"->"PGL","vgl6pdh"->"GND","vr5pe"->"RPE","vr5pi"->"RPI","vtki"->"TKT1","vtkii"->"TKT2","vtala"->"TALA","vgssgr"->"GTHO","vgshr"->"GTHP"}
 
 
 TableForm[{Cases[ppp["Reactions"],r_reaction/;getID[r]==#[[1]]][[1]],If[MatchQ[#[[2]],_Missing],TraditionalForm@#[[2]],Cases[rbc["Reactions"],r_reaction/;getID[r]==#[[2]]][[1]]]}&/@sb2ToiAB]/.sb2MetsToiAB
@@ -225,38 +304,36 @@ TableForm[{Cases[ppp["Reactions"],r_reaction/;getID[r]==#[[1]]][[1]],If[MatchQ[#
 reaction["GSHR", {metabolite["gthrd", "c"]}, {metabolite["h", "c"], metabolite["gthox", "c"]}, {2, 2, 1}, True]
 
 
+iABppp["Reactions"]
+
+
 iABppp=subModel[rbc,ppp["Fluxes"]/.sb2ToiAB];
-iABppp=addReaction[iABppp,reaction["GSHR", {metabolite["gthrd", "c"]}, {metabolite["h", "c"], metabolite["gthox", "c"]}, {2, 2, 1}, True]](*not in BIGG; should maybe be replaced by glutathione peroxidase GTHP*);
-iABppp=addSinks[iABppp,{m["f6p","c"],m["g6p","c"],m["g3p","c"],m["h2o","c"],m["h","c"],m["co2","c"]}];
-setInitialConditions[iABppp,{MASStoolbox`MASS`metabolite["g6p", "c"]->0.0486`,MASStoolbox`MASS`metabolite["f6p", "c"]->0.0198`,MASStoolbox`MASS`metabolite["g3p", "c"]->0.00728`,MASStoolbox`MASS`metabolite["6pgl", "c"]->0.001754242723`,MASStoolbox`MASS`metabolite["6pgc", "c"]->0.037475258`,MASStoolbox`MASS`metabolite["ru5p-D", "c"]->0.0049367903`,MASStoolbox`MASS`metabolite["xu5p-D", "c"]->0.014784196`,MASStoolbox`MASS`metabolite["r5p", "c"]->0.00494`,
-MASStoolbox`MASS`metabolite["s7p", "c"]->0.023987984`,MASStoolbox`MASS`metabolite["e4p", "c"]->0.0050750696`,MASStoolbox`MASS`metabolite["nadp", "c"]->0.0002`,MASStoolbox`MASS`metabolite["nadph", "c"]->0.0658`,MASStoolbox`MASS`metabolite["gthrd", "c"]->3.2`,MASStoolbox`MASS`metabolite["gthox", "c"]->0.11999999999999966`,MASStoolbox`MASS`metabolite["h", "c"]->0.00009929240111468596`,MASStoolbox`MASS`metabolite["h2o", "c"]->0.99999683`,MASStoolbox`MASS`metabolite["co2", "c"]->1.0000021`,
-"G6PDH2r"->0.21`,"PGL"->0.21`,"GND"->0.21`,"RPE"->0.14`,"RPI"->-0.06999999999999999`,"TKT1"->0.06999999999999999`,
-"TKT2"->0.07`,"TALA"->0.06999999999999999`,"GTHO"->0.42`,"GSHR"->0.42`,"vgshr"->0.42`,"Sink_g6p_c"->-0.21`,"Sink_f6p_c"->0.14`,"Sink_h_c"->0.84`,"Sink_h2o_c"->-0.21`,"Sink_co2_c"->0.21,"Sink_g3p_c"->0.07`}];
-setParameters[iABppp,{parameter["Volume", "c"] -> 1, Keq["Sink_h_c"] -> 1, Keq["Sink_h2o_c"] -> 1, Keq["Sink_g6p_c"] -> 1, Keq["Sink_g3p_c"] -> 1,
+setID[iABppp,"iAB-RBC-238-PentosePhosphatePathway"];
+(*iABppp=addReaction[iABppp,reaction["GSHR", {metabolite["gthrd", "c"]}, {metabolite["h", "c"], metabolite["gthox", "c"]}, {2, 2, 1}, True]]*)(*not in BIGG; should maybe be replaced by glutathione peroxidase GTHP*)
+iABppp=addSinks[iABppp,{m["f6p","c"],m["g6p","c"],m["g3p","c"],m["h2o","c"],m["h","c"],m["co2","c"],m["h2o2","c"]}];
+updateBoundaryConditions[iABppp,{m["h","c"],m["h2o","c"]}];
+
+ssFluxes=#[[1]]->#[[2]]Milli Mole Liter^-1 Hour^-1&/@{"G6PDH2r"->0.21`,"PGL"->0.21`,"GND"->0.21`,"RPE"->0.14`,"RPI"->-0.06999999999999999`,"TKT1"->0.06999999999999999`,"TKT2"->0.07`,"TALA"->0.06999999999999999`,"GTHO"->0.42`,"GTHP"->0.42`,"GSHR"->0.42`,"vgshr"->0.42`,"Sink_g6p_c"->-0.21`,"Sink_f6p_c"->0.14`,"Sink_h_c"->0,"Sink_h2o_c"->0.63`,"Sink_h2o2_c"->-0.42`,"Sink_co2_c"->0.21`,"Sink_g3p_c"->0.07`};
+ssConc=#[[1]]->#[[2]]Milli Mole Liter^-1&/@{MASStoolbox`MASS`metabolite["g6p", "c"]->0.0486`,MASStoolbox`MASS`metabolite["f6p", "c"]->0.0198`,MASStoolbox`MASS`metabolite["g3p", "c"]->0.00728`,MASStoolbox`MASS`metabolite["6pgl", "c"]->0.001754242723`,MASStoolbox`MASS`metabolite["6pgc", "c"]->0.037475258`,MASStoolbox`MASS`metabolite["ru5p-D", "c"]->0.0049367903`,MASStoolbox`MASS`metabolite["xu5p-D", "c"]->0.014784196`,MASStoolbox`MASS`metabolite["r5p", "c"]->0.00494`,MASStoolbox`MASS`metabolite["s7p", "c"]->0.023987984`,MASStoolbox`MASS`metabolite["e4p", "c"]->0.0050750696`,MASStoolbox`MASS`metabolite["nadp", "c"]->0.0002`,MASStoolbox`MASS`metabolite["nadph", "c"]->0.0658`,MASStoolbox`MASS`metabolite["gthrd", "c"]->3.2`,MASStoolbox`MASS`metabolite["gthox", "c"]->0.11999999999999966`,MASStoolbox`MASS`metabolite["h", "c"]->0.00009929240111468596`,MASStoolbox`MASS`metabolite["h2o2", "c"]->0.00001`,MASStoolbox`MASS`metabolite["h2o", "c"]->0.99999683`,MASStoolbox`MASS`metabolite["co2", "c"]->1.0000021`};
+setInitialConditions[iABppp,Join[ssFluxes,ssConc]];
+setParameters[iABppp,{parameter["Volume", "c"] -> 1 Liter, Keq["Sink_h_c"] -> 1, Keq["Sink_h2o_c"] -> 1, Keq["Sink_g6p_c"] -> 1, Keq["Sink_g3p_c"] -> 1,Keq["Sink_h2o2_c"] -> 1,
 Keq["Sink_co2_c"] -> 1,Keq["Sink_f6p_c"] -> 1, Keq["G6PDH2r"] -> 1000, Keq["PGL"] -> 1000, Keq["GND"] -> 1000, Keq["RPE"] -> 3, Keq["RPI"] -> 1/2.57, 
-  Keq["TKT1"] -> 3, Keq["TKT2"] -> 10.3, Keq["TALA"] -> 1.05, Keq["GTHO"] -> 100,Keq["GSHR"] -> 2, Keq["vgshr"] -> 2, metabolite[_, "Xt"] -> 1}];
-setIgnore[iABppp,{m["h","c"],m["h2o","c"]}]
-setBoundaryConditions[iABppp,{m["h","c"],m["h2o","c"]}]
-perc=calcPERC[iABppp];
+  Keq["TKT1"] -> 3, Keq["TKT2"] -> 10.3, Keq["TALA"] -> 1.05, Keq["GTHO"] -> 100,Keq["GTHP"] -> \[Infinity](*, Keq["GSHR"] -> 2*), metabolite[_, "Xt"] -> 1 Milli Mole Liter^-1}];
+perc=calcPERC[iABppp,AtEquilibriumDefault->1];
 updateParameters[iABppp,perc];
 updateNotes[iABppp,defaultInitializationNotes[]<>"\n This model is a translation of the pentose phosphate pathway model in 'Simulation of dynamic network state' in terms of the iAB-RBC-238 reconstruction by Aarash Bordbard."];
-SetDirectory[NotebookDirectory[]];
-Export["../models/iAB-RBC-238/iAB-RBC-238-PenthosePhosphatePathway.m.gz",iABppp]
 
 
-plotSimulation[simulate[iABppp,{t,0,1000}][[1]]]
+Chop[iABppp.(iABppp["Fluxes"]/.iABppp["InitialConditions"])]
 
 
-iABppp["ElementalComposition"]
+X3[iABglycolysis]
 
 
-elementallyBalancedQ[iABppp]
+{concSol,fluxSol}=simulate[iABppp,{t,0,1000}];
 
 
-visualizePathways[reactions2bipartite[iABppp["Reactions"]],
-DirectedEdges->True,PlotStyle->{GrayLevel[0.5`],Arrowheads[.012]},
-"MetaboliteRenderingFunction"->({Style[Text[StandardForm@#2,#1],
-Background->Opacity[.6,White]]}&),"ReactionRenderingFunction"->({Style[Text[StandardForm@#2,#1],Larger,Background->Opacity[.6,LightGray]]}&),ImageSize->800,MultiedgeStyle->None]
+plotSimulation[concSol]
 
 
 (* ::Subsection:: *)
@@ -277,36 +354,32 @@ sb2ToiAB={"vada"->"ADA","vadprt"->"ADPT","vak"->"ADNK1","vampase"->"NTD7","vampd
 TableForm[{Cases[salvage["Reactions"],r_reaction/;getID[r]==#[[1]]][[1]],If[MatchQ[#[[2]],_Missing],TraditionalForm@#[[2]],Cases[rbc["Reactions"],r_reaction/;getID[r]==#[[2]]][[1]]]}&/@sb2ToiAB]/.sb2MetsToiAB
 
 
-salvage["Parameters"]
-
-
 iABsalvage=subModel[rbc,salvage["Fluxes"]/.sb2ToiAB];
 iABsalvage=addReaction[iABsalvage,MASStoolbox`MASS`reaction["vatpgen", {MASStoolbox`MASS`metabolite["adp", "c"], MASStoolbox`MASS`metabolite["h", "c"], MASStoolbox`MASS`metabolite["pi", "c"]}, {MASStoolbox`MASS`metabolite["h2o", "c"], MASStoolbox`MASS`metabolite["atp", "c"]}, {1, 1, 1, 1, 1}, True]](*not in BIGG*);
 iABsalvage=addSinks[iABsalvage,{m["ade","c"],m["adn","c"],m["hxan","c"],m["ins","c"],m["pi","c"],m["amp","c"],m["h","c"],m["h2o","c"],(*these are new*)m["ppi","c"],m["nh4","c"],m["adp","c"]}];
-setInitialConditions[iABsalvage,Join[{MASStoolbox`MASS`metabolite["r5p", "c"]->0.00494`,MASStoolbox`MASS`metabolite["ade", "c"]->0.001`,MASStoolbox`MASS`metabolite["adn", "c"]->0.0012`,MASStoolbox`MASS`metabolite["imp", "c"]->0.01`,MASStoolbox`MASS`metabolite["ins", "c"]->0.001`,MASStoolbox`MASS`metabolite["hxan", "c"]->0.002`,MASStoolbox`MASS`metabolite["r1p", "c"]->0.06`,MASStoolbox`MASS`metabolite["prpp", "c"]->0.005`,MASStoolbox`MASS`metabolite["amp", "c"]->0.08672812499999999`,MASStoolbox`MASS`metabolite["adp", "c"]->0.29`,MASStoolbox`MASS`metabolite["atp", "c"]->1.6`,MASStoolbox`MASS`metabolite["pi", "c"]->2.5`,
-MASStoolbox`MASS`metabolite["h", "c"]->0.00006309573444801929`,MASStoolbox`MASS`metabolite["h2o", "c"]->0.99999976`},Chop@fba[iABsalvage,"vatpgen",Join[{"ADA"->{0.01,0.01},"ADNK1"->{0.12,0.12},"vatpgen"->{0,0.148`},"NTD11"->{0.014,0.014}},{"Sink_ade_c"->{-0.014,-0.014},"Sink_adn_c"->{-\[Infinity],\[Infinity]},"Sink_hxan_c"->{-\[Infinity],\[Infinity]},"Sink_ins_c"->{-\[Infinity],\[Infinity]},"Sink_pi_c"->{-\[Infinity],\[Infinity]},"Sink_amp_c"->{-\[Infinity],\[Infinity]},"Sink_h_c"->{-\[Infinity],\[Infinity]},"Sink_h2o_c"->{-\[Infinity],\[Infinity]},"Sink_ppi_c"->{-\[Infinity],\[Infinity]},"Sink_nh4_c"->{-\[Infinity],\[Infinity]},"Sink_adp_c"->{-\[Infinity],\[Infinity]}}]]]];
-setParameters[iABsalvage,{MASStoolbox`MASS`parameter["Volume", "c"]->1,MASStoolbox`MASS`Keq["ADNK1"]->\[Infinity],MASStoolbox`MASS`Keq["NTD7"]->\[Infinity],MASStoolbox`MASS`Keq["ADA"]->\[Infinity],MASStoolbox`MASS`Keq["AMPDA"]->\[Infinity],MASStoolbox`MASS`Keq["NTD11"]->\[Infinity],MASStoolbox`MASS`Keq["PUNP5"]->0.09`,MASStoolbox`MASS`Keq["PPM"]->13.3`,MASStoolbox`MASS`Keq["PRPPS"]->\[Infinity],MASStoolbox`MASS`Keq["ADPT"]->\[Infinity],MASStoolbox`MASS`Keq["vatpgen"]->\[Infinity],MASStoolbox`MASS`Keq["Sink_ade_c"]->1,MASStoolbox`MASS`Keq["Sink_adn_c"]->1,MASStoolbox`MASS`Keq["Sink_hxan_c"]->1,MASStoolbox`MASS`Keq["Sink_ins_c"]->\[Infinity],MASStoolbox`MASS`Keq["Sink_pi_c"]->1,MASStoolbox`MASS`Keq["Sink_amp_c"]->1,MASStoolbox`MASS`Keq["Sink_h_c"]->1,MASStoolbox`MASS`Keq["Sink_h2o_c"]->1,MASStoolbox`MASS`metabolite["adn", "Xt"]->0.0012001`,MASStoolbox`MASS`metabolite["ade", "Xt"]->0.001`,MASStoolbox`MASS`metabolite["ins", "Xt"]->0.00100087`,MASStoolbox`MASS`metabolite["hxan", "Xt"]->0.00199903`,MASStoolbox`MASS`metabolite["pi", "Xt"]->2.5`,MASStoolbox`MASS`metabolite["nh3", "Xt"]->0.0909999`,metabolite[_,"Xt"]->1}];
+ssConc=#[[1]]->#[[2]]Milli Mole Liter^-1&/@{MASStoolbox`MASS`metabolite["r5p", "c"]->0.00494`,MASStoolbox`MASS`metabolite["ade", "c"]->0.001`,MASStoolbox`MASS`metabolite["adn", "c"]->0.0012`,MASStoolbox`MASS`metabolite["imp", "c"]->0.01`,MASStoolbox`MASS`metabolite["ins", "c"]->0.001`,MASStoolbox`MASS`metabolite["hxan", "c"]->0.002`,MASStoolbox`MASS`metabolite["r1p", "c"]->0.06`,MASStoolbox`MASS`metabolite["prpp", "c"]->0.005`,MASStoolbox`MASS`metabolite["amp", "c"]->0.08672812499999999`,MASStoolbox`MASS`metabolite["adp", "c"]->0.29`,MASStoolbox`MASS`metabolite["atp", "c"]->1.6`,MASStoolbox`MASS`metabolite["pi", "c"]->2.5`,MASStoolbox`MASS`metabolite["ppi", "c"]->0.0015`,MASStoolbox`MASS`metabolite["h", "c"]->0.00006309573444801929`,MASStoolbox`MASS`metabolite["h2o", "c"]->0.99999976`,MASStoolbox`MASS`metabolite["nh4", "c"]->0.091`};
+ssFluxes=#[[1]]->#[[2]]Milli Mole Liter^-1 Hour^-1&/@Chop@fba[iABsalvage,"vatpgen",Join[{"ADA"->{0.01,0.01},"ADNK1"->{0.12,0.12},"vatpgen"->{0,0.148`},"NTD11"->{0.014,0.014}},{"Sink_ade_c"->{-0.014,-0.014},"Sink_adn_c"->{-\[Infinity],0},"Sink_hxan_c"->{-\[Infinity],\[Infinity]},"Sink_ins_c"->{-\[Infinity],\[Infinity]},"Sink_pi_c"->{-\[Infinity],\[Infinity]},"Sink_amp_c"->{-\[Infinity],\[Infinity]},"Sink_h_c"->{-\[Infinity],-\[Infinity]},"Sink_h2o_c"->{0,0},"Sink_ppi_c"->{-\[Infinity],\[Infinity]},"Sink_nh4_c"->{-\[Infinity],\[Infinity]},"Sink_adp_c"->{-\[Infinity],\[Infinity]}}]];
+setInitialConditions[iABsalvage,Join[ssConc,ssFluxes]];
+xtrnlConc=#[[1]]->#[[2]]Milli Mole Liter^-1&/@{MASStoolbox`MASS`metabolite["ppi", "Xt"]->0.0015`,MASStoolbox`MASS`metabolite["adn", "Xt"]->0.0012001`,MASStoolbox`MASS`metabolite["ade", "Xt"]->0.00100014`,MASStoolbox`MASS`metabolite["hxan", "Xt"]->0.00199986`,MASStoolbox`MASS`metabolite["nh4", "Xt"]->0.0909999`,MASStoolbox`MASS`metabolite["amp", "Xt"]->0.09540093749999999`,MASStoolbox`MASS`metabolite["h", "Xt"]->0.00006309573444801929`,MASStoolbox`MASS`metabolite["pi", "Xt"]->0.25`,MASStoolbox`MASS`metabolite["ins", "Xt"]->0.0009999`,MASStoolbox`MASS`metabolite["adp", "Xt"]->0.3`};
+param={MASStoolbox`MASS`parameter["Volume", "c"]->1 Liter,MASStoolbox`MASS`Keq["ADNK1"]->1000000,MASStoolbox`MASS`Keq["NTD7"]->1000000,MASStoolbox`MASS`Keq["ADA"]->1000000,MASStoolbox`MASS`Keq["AMPDA"]->1000000,MASStoolbox`MASS`Keq["NTD11"]->1000000,MASStoolbox`MASS`Keq["PUNP5"]->0.09`,MASStoolbox`MASS`Keq["PPM"]->13.3`,MASStoolbox`MASS`Keq["PRPPS"]->1000000,MASStoolbox`MASS`Keq["ADPT"]->1000000,MASStoolbox`MASS`Keq["Sink_ade_c"]->1,MASStoolbox`MASS`Keq["Sink_pi_c"]->1,MASStoolbox`MASS`Keq["Sink_adp_c"]->1,MASStoolbox`MASS`Keq["Sink_amp_c"]->1,MASStoolbox`MASS`Keq["Sink_ppi_c"]->100000,MASStoolbox`MASS`Keq["Sink_adn_c"]->0.1`,MASStoolbox`MASS`Keq["Sink_ins_c"]->1,MASStoolbox`MASS`Keq["Sink_hxan_c"]->1,MASStoolbox`MASS`Keq["Sink_nh4_c"]->1,MASStoolbox`MASS`Keq["vatpgen"]->1000000,MASStoolbox`MASS`Keq["Sink_h_c"]->1,MASStoolbox`MASS`Keq["Sink_h2o_c"]->1};
+setParameters[iABsalvage,Join[xtrnlConc,param]];
 setIgnore[iABsalvage,{m["h","c"],m["h2o","c"]}]
-setBoundaryConditions[iABsalvage,{m["h","c"],m["h2o","c"]}]
+setBoundaryConditions[iABsalvage,{m["h","c"],m["h2o","c"]}];
+perc=calcPERC[iABsalvage,AtEquilibriumDefault->1];
+updateParameters[iABsalvage,perc]
 
 
-iABsalvage["Fluxes"]/.iABsalvage["InitialConditions"]
-Chop[iABsalvage.%]
+SortBy[perc,Last]
 
 
-perc=calcPERC[iABsalvage]
+{concSol,fluxSol}=simulate[iABsalvage,{t,0,1000}];
+plotSimulation[concSol]
 
 
-plotFVA@fva[iABsalvage,getID[#]->{-\[Infinity],\[Infinity]}&/@iABsalvage["Exchanges"]]
+TableForm[{#[[1]],stripUnits@Convert[#[[2]],Milli Mole Liter^-1 Hour^-1]}&/@FilterRules[iABsalvage["InitialConditions"],_v]]
 
 
-LinearProgramming[Sequence@@model2LinearProgrammingData[iABsalvage,"PPM",getID[#]->{-\[Infinity],\[Infinity]}&/@iABsalvage["Exchanges"]]]
-DualLinearProgramming[Sequence@@model2LinearProgrammingData[iABsalvage,"PPM",getID[#]->{-\[Infinity],\[Infinity]}&/@iABsalvage["Exchanges"]]]
-Length/@%
-
-
-LinearProgramming[Sequence@@model2LinearProgrammingData[stub,"PPM",getID[#]->{-\[Infinity],\[Infinity]}&/@stub["Exchanges"]]]
-DualLinearProgramming[Sequence@@model2LinearProgrammingData[stub,"PPM",getID[#]->{-\[Infinity],\[Infinity]}&/@stub["Exchanges"]]]
+calcPERC[iABsalvage,AtEquilibriumDefault->1]
 
 
 visualizePathways[reactions2bipartite[iABsalvage["Reactions"]],
@@ -319,11 +392,6 @@ elementallyBalancedQ[iABsalvage]
 stoichiometricallyConsistentQ[iABsalvage]
 
 
-
-updateParameters[iABsalvage,perc];
-updateNotes[iABsalvage,defaultInitializationNotes[]<>"\n This model is a translation of the pentose phosphate pathway model in 'Simulation of dynamic network state' in terms of the iAB-RBC-238 reconstruction by Aarash Bordbard."];
+updateNotes[iABsalvage,defaultInitializationNotes[]<>"\n This model is a translation of the nucleotide salvage pathway model in 'Simulation of dynamic network state' in terms of the iAB-RBC-238 reconstruction by Aarash Bordbard."];
 SetDirectory[NotebookDirectory[]];
 Export["../models/iAB-RBC-238/iAB-RBC-238-NucleotideSalvagePathway.m.gz",iABsalvage]
-
-
-
