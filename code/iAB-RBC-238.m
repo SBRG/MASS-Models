@@ -16,7 +16,7 @@ bigg2equilibrator=Import["../data/bigg2equilibratorViaKEGG.m.gz"];
 (*SBML2MODEL*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Import model from SBML and translate to MASSmodel*)
 
 
@@ -178,7 +178,7 @@ metabolite["gl6p",comp_]:>metabolite["6pgl",comp],metabolite["go6p",comp_]:>meta
 metabolite["gssg",comp_]:>metabolite["gthox",comp],metabolite["gsh",comp_]:>metabolite["gthrd",comp],metabolite["ado",comp_]:>metabolite["adn",comp],metabolite["ino",comp_]:>metabolite["ins",comp],metabolite["hyp",comp_]:>metabolite["hxan",comp]};
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Glycolysis*)
 
 
@@ -304,9 +304,6 @@ TableForm[{Cases[ppp["Reactions"],r_reaction/;getID[r]==#[[1]]][[1]],If[MatchQ[#
 reaction["GSHR", {metabolite["gthrd", "c"]}, {metabolite["h", "c"], metabolite["gthox", "c"]}, {2, 2, 1}, True]
 
 
-iABppp["Reactions"]
-
-
 iABppp=subModel[rbc,ppp["Fluxes"]/.sb2ToiAB];
 setID[iABppp,"iAB-RBC-238-PentosePhosphatePathway"];
 (*iABppp=addReaction[iABppp,reaction["GSHR", {metabolite["gthrd", "c"]}, {metabolite["h", "c"], metabolite["gthox", "c"]}, {2, 2, 1}, True]]*)(*not in BIGG; should maybe be replaced by glutathione peroxidase GTHP*)
@@ -322,12 +319,11 @@ Keq["Sink_co2_c"] -> 1,Keq["Sink_f6p_c"] -> 1, Keq["G6PDH2r"] -> 1000, Keq["PGL"
 perc=calcPERC[iABppp,AtEquilibriumDefault->1];
 updateParameters[iABppp,perc];
 updateNotes[iABppp,defaultInitializationNotes[]<>"\n This model is a translation of the pentose phosphate pathway model in 'Simulation of dynamic network state' in terms of the iAB-RBC-238 reconstruction by Aarash Bordbard."];
+SetDirectory[NotebookDirectory[]];
+Export["../models/iAB-RBC-238/iAB-RBC-238-PentosePhosphatePathway.m.gz",iABppp]
 
 
 Chop[iABppp.(iABppp["Fluxes"]/.iABppp["InitialConditions"])]
-
-
-X3[iABglycolysis]
 
 
 {concSol,fluxSol}=simulate[iABppp,{t,0,1000}];
