@@ -1,0 +1,3 @@
+elapsed_time, best.fitness, num_generations, pop_size, neighborhood_size, inertia, cognitive_rate, social_rate
+24.739, 85497.0808338, 100, 100, 3, 1.0, 2.1, 2.1
+23.74, 247.141187865, 100, 100, 3, 1.0, 2.1, 2.1
