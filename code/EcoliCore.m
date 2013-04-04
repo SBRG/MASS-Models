@@ -10,11 +10,11 @@ SetDirectory[NotebookDirectory[]];
 (*E. coli Core*)
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*GPRs*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Read GPRs from Simpheny*)
 
 
@@ -110,15 +110,16 @@ TableForm[ruleSet2=Replace[Cases[booleanRules2,l_List/;l[[1]]!="":>protein[l[[2]
 
 SetDirectory[NotebookDirectory[]];
 ecolicore=sbml2model["../data/EcoliCore/EcoliCore.xml.gz",Method->"Light"]//.s_String:>StringReplace[s,biggCommonStringReplacements];
-revExchanges=r[getID@#,getProducts@#,getSubstrates@#,Reverse[getStoich@#],reversibleQ@#]&/@ecolicore["Exchanges"];
+revExchanges=r[getID@#,getProducts@#,getSubstrates@#,Reverse[getStoichiometry@#],reversibleQ@#]&/@ecolicore["Exchanges"];
 ecolicore=deleteReactions[ecolicore,getID/@ecolicore["Exchanges"]];
 ecolicore=addReactions[ecolicore,revExchanges];
-additionalRxns=reactionFromString/@{"GLYK: M_atp_c + M_glyc_c --> M_adp_c + M_glyc3p_c + M_h_c","G3PD2: M_glyc3p_c + M_nadp_c <=> M_dhap_c + M_h_c + M_nadph_c","EX_glyc(e): 0 <=> M_glyc_c"};
+additionalRxns=str2mass/@{"GLYK: M_atp_c + M_glyc_c --> M_adp_c + M_glyc3p_c + M_h_c","G3PD2: M_glyc3p_c + M_nadp_c <=> M_dhap_c + M_h_c + M_nadph_c","EX_glyc(e): 0 <=> M_glyc_c"};
 ecolicore=addReactions[ecolicore,additionalRxns];
-setModelAttribute[ecolicore,"GPR",gpr];
-setModelAttribute[ecolicore,"InitialConditions",{}];
-setModelAttribute[ecolicore,"Notes",defaultInitializationNotes[]];
+setGPR[ecolicore,gpr];
+setInitialConditions[ecolicore,{}];
+setNotes[ecolicore,defaultInitializationNotes[]];
 setIgnore[ecolicore,{m["h","c"],m["h2o","c"]}];
+setObjective[ecolicore,v["Biomass_Ecoli_core_N(w/GAM)_Nmet2"]];
 
 
 (* ::Subsection:: *)
@@ -129,7 +130,7 @@ SetDirectory[NotebookDirectory[]];
 bigg2equilibrator=Import["../Data/bigg2equilibratorViaKEGG.m.gz"];
 
 
-dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.25 Mole Liter^-1,pH->7.6]
+dGofRxn=calcDeltaG[ecolicore["Reactions"],bigg2equilibrator,is->.25 Mole Liter^-1,pH->7.6];
 
 
 keq=dG2keq[dGofRxn];
@@ -141,8 +142,15 @@ keqAdjusted=adjustUnits[keq,ecolicore["Reactions"],Ignore->ecolicore["Ignore"],D
 updateParameters[ecolicore,keqAdjusted];
 
 
-ecolicore["Parameters"]
+ecolicore["Parameters"];
 
 
 SetDirectory[NotebookDirectory[]];
 Export["../models/EcoliCore/EcoliCore.m.gz",ecolicore]
+
+
+fba[ecolicore]
+fba[ecolicore,{"EX_glc(e)"->{-\[Infinity],10},"EX_o2(e)"->{-\[Infinity],20},"EX_pi(e)"->{-\[Infinity],\[Infinity]},"EX_nh4(e)"->{-\[Infinity],\[Infinity]}}]
+
+
+
