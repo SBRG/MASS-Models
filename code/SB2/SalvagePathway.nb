@@ -19,7 +19,7 @@ WindowFrame->Normal*)
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[{
- RowBox[{"<<", "MASStoolbox`"}], "\n", 
+ RowBox[{"<<", "Toolbox`"}], "\n", 
  RowBox[{"<<", "XML`"}], "\n", 
  RowBox[{
   RowBox[{"SetDirectory", "[", 
@@ -77,7 +77,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["r5p", "c"],
+       Toolbox`metabolite["r5p", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H9C5O8P\>\""}], ",", 
      RowBox[{
@@ -103,7 +103,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ade", "c"],
+       Toolbox`metabolite["ade", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H5C5N5\>\""}], ",", 
      RowBox[{
@@ -129,7 +129,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ado", "c"],
+       Toolbox`metabolite["ado", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H13C10N5O4\>\""}], ",", 
      RowBox[{
@@ -155,7 +155,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["imp", "c"],
+       Toolbox`metabolite["imp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H12C10N4O8P\>\""}], ",", 
      RowBox[{
@@ -181,7 +181,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ino", "c"],
+       Toolbox`metabolite["ino", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H12C10N4O5\>\""}], ",", 
      RowBox[{
@@ -207,7 +207,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["hyp", "c"],
+       Toolbox`metabolite["hyp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H4C5N4O\>\""}], ",", 
      RowBox[{
@@ -233,7 +233,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["r1p", "c"],
+       Toolbox`metabolite["r1p", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H9C5O8P\>\""}], ",", 
      RowBox[{
@@ -259,7 +259,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["prpp", "c"],
+       Toolbox`metabolite["prpp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H8C5O14P3\>\""}], ",", 
      RowBox[{
@@ -285,7 +285,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["amp", "c"],
+       Toolbox`metabolite["amp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H13C10N5O7P\>\""}], ",", 
      RowBox[{
@@ -311,7 +311,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["adp", "c"],
+       Toolbox`metabolite["adp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H13C10N5O10P2\>\""}], ",", 
      RowBox[{
@@ -337,7 +337,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["atp", "c"],
+       Toolbox`metabolite["atp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H13C10N5O13P3\>\""}], ",", 
      RowBox[{
@@ -363,7 +363,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["phos", "c"],
+       Toolbox`metabolite["phos", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<HO4P\>\""}], ",", 
      RowBox[{
@@ -389,7 +389,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["h", "c"],
+       Toolbox`metabolite["h", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H\>\""}], ",", 
      RowBox[{
@@ -415,7 +415,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["h2o", "c"],
+       Toolbox`metabolite["h2o", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H2O\>\""}], ",", 
      RowBox[{
@@ -441,7 +441,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["nh3", "c"],
+       Toolbox`metabolite["nh3", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", "\"\<H3N\>\""}]}], "}"}]}], ";"}], "\n", 
  RowBox[{
@@ -474,7 +474,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["ado", "c"],
+          Toolbox`metabolite["ado", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -499,7 +499,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h2o", "c"],
+          Toolbox`metabolite["h2o", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -525,7 +525,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["ino", "c"],
+          Toolbox`metabolite["ino", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -550,7 +550,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["nh3", "c"],
+          Toolbox`metabolite["nh3", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vada",
@@ -563,11 +563,11 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vada", {
-        MASSToolbox`metabolite["ado", "c"], 
-        MASSToolbox`metabolite["h2o", "c"]}, {
-        MASSToolbox`metabolite["ino", "c"], 
-        MASSToolbox`metabolite["nh3", "c"]}, {1, 1, 1, 1}, True],
+      Toolbox`reaction["vada", {
+        Toolbox`metabolite["ado", "c"], 
+        Toolbox`metabolite["h2o", "c"]}, {
+        Toolbox`metabolite["ino", "c"], 
+        Toolbox`metabolite["nh3", "c"]}, {1, 1, 1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -595,7 +595,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["ade", "c"],
+         Toolbox`metabolite["ade", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -615,8 +615,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vade", {
-        MASSToolbox`metabolite["ade", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vade", {
+        Toolbox`metabolite["ade", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -644,7 +644,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["ado", "c"],
+         Toolbox`metabolite["ado", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -664,8 +664,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vado", {
-        MASSToolbox`metabolite["ado", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vado", {
+        Toolbox`metabolite["ado", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -694,7 +694,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["ade", "c"],
+          Toolbox`metabolite["ade", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -719,7 +719,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h2o", "c"],
+          Toolbox`metabolite["h2o", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -744,7 +744,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["prpp", "c"],
+          Toolbox`metabolite["prpp", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -770,7 +770,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["amp", "c"],
+          Toolbox`metabolite["amp", "c"],
           Editable->False,
           Selectable->False], "+", 
          RowBox[{"2", " ", 
@@ -796,7 +796,7 @@ Cell[BoxData[{
              BackFaceColor->RGBColor[0, 0, 0],
              GraphicsColor->RGBColor[0, 0, 0],
              FontColor->RGBColor[0, 0, 0]]],
-           MASSToolbox`metabolite["phos", "c"],
+           Toolbox`metabolite["phos", "c"],
            Editable->False,
            Selectable->False]}]}]}], 
        StyleBox["vadprt",
@@ -809,12 +809,12 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vadprt", {
-        MASSToolbox`metabolite["ade", "c"], 
-        MASSToolbox`metabolite["h2o", "c"], 
-        MASSToolbox`metabolite["prpp", "c"]}, {
-        MASSToolbox`metabolite["amp", "c"], 
-        MASSToolbox`metabolite["phos", "c"]}, {1, 1, 1, 1, 2}, True],
+      Toolbox`reaction["vadprt", {
+        Toolbox`metabolite["ade", "c"], 
+        Toolbox`metabolite["h2o", "c"], 
+        Toolbox`metabolite["prpp", "c"]}, {
+        Toolbox`metabolite["amp", "c"], 
+        Toolbox`metabolite["phos", "c"]}, {1, 1, 1, 1, 2}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -843,7 +843,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["ado", "c"],
+          Toolbox`metabolite["ado", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -868,7 +868,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["atp", "c"],
+          Toolbox`metabolite["atp", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -894,7 +894,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["adp", "c"],
+          Toolbox`metabolite["adp", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -919,7 +919,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["amp", "c"],
+          Toolbox`metabolite["amp", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vak",
@@ -932,11 +932,11 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vak", {
-        MASSToolbox`metabolite["ado", "c"], 
-        MASSToolbox`metabolite["atp", "c"]}, {
-        MASSToolbox`metabolite["adp", "c"], 
-        MASSToolbox`metabolite["amp", "c"]}, {1, 1, 1, 1}, True],
+      Toolbox`reaction["vak", {
+        Toolbox`metabolite["ado", "c"], 
+        Toolbox`metabolite["atp", "c"]}, {
+        Toolbox`metabolite["adp", "c"], 
+        Toolbox`metabolite["amp", "c"]}, {1, 1, 1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -965,7 +965,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["amp", "c"],
+          Toolbox`metabolite["amp", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -990,7 +990,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h2o", "c"],
+          Toolbox`metabolite["h2o", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -1016,7 +1016,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["ado", "c"],
+          Toolbox`metabolite["ado", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1041,7 +1041,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h", "c"],
+          Toolbox`metabolite["h", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1066,7 +1066,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["phos", "c"],
+          Toolbox`metabolite["phos", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vampase",
@@ -1079,12 +1079,12 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vampase", {
-        MASSToolbox`metabolite["amp", "c"], 
-        MASSToolbox`metabolite["h2o", "c"]}, {
-        MASSToolbox`metabolite["ado", "c"], 
-        MASSToolbox`metabolite["h", "c"], 
-        MASSToolbox`metabolite["phos", "c"]}, {1, 1, 1, 1, 1}, True],
+      Toolbox`reaction["vampase", {
+        Toolbox`metabolite["amp", "c"], 
+        Toolbox`metabolite["h2o", "c"]}, {
+        Toolbox`metabolite["ado", "c"], 
+        Toolbox`metabolite["h", "c"], 
+        Toolbox`metabolite["phos", "c"]}, {1, 1, 1, 1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1113,7 +1113,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["amp", "c"],
+          Toolbox`metabolite["amp", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1138,7 +1138,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h2o", "c"],
+          Toolbox`metabolite["h2o", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -1164,7 +1164,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["imp", "c"],
+          Toolbox`metabolite["imp", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1189,7 +1189,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["nh3", "c"],
+          Toolbox`metabolite["nh3", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vampda",
@@ -1202,11 +1202,11 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vampda", {
-        MASSToolbox`metabolite["amp", "c"], 
-        MASSToolbox`metabolite["h2o", "c"]}, {
-        MASSToolbox`metabolite["imp", "c"], 
-        MASSToolbox`metabolite["nh3", "c"]}, {1, 1, 1, 1}, True],
+      Toolbox`reaction["vampda", {
+        Toolbox`metabolite["amp", "c"], 
+        Toolbox`metabolite["h2o", "c"]}, {
+        Toolbox`metabolite["imp", "c"], 
+        Toolbox`metabolite["nh3", "c"]}, {1, 1, 1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1234,7 +1234,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["hyp", "c"],
+         Toolbox`metabolite["hyp", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -1254,8 +1254,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vhyp", {
-        MASSToolbox`metabolite["hyp", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vhyp", {
+        Toolbox`metabolite["hyp", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1284,7 +1284,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h2o", "c"],
+          Toolbox`metabolite["h2o", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1309,7 +1309,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["imp", "c"],
+          Toolbox`metabolite["imp", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -1335,7 +1335,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h", "c"],
+          Toolbox`metabolite["h", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1360,7 +1360,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["ino", "c"],
+          Toolbox`metabolite["ino", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1385,7 +1385,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["phos", "c"],
+          Toolbox`metabolite["phos", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vimpase",
@@ -1398,12 +1398,12 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vimpase", {
-        MASSToolbox`metabolite["h2o", "c"], 
-        MASSToolbox`metabolite["imp", "c"]}, {
-        MASSToolbox`metabolite["h", "c"], 
-        MASSToolbox`metabolite["ino", "c"], 
-        MASSToolbox`metabolite["phos", "c"]}, {1, 1, 1, 1, 1}, True],
+      Toolbox`reaction["vimpase", {
+        Toolbox`metabolite["h2o", "c"], 
+        Toolbox`metabolite["imp", "c"]}, {
+        Toolbox`metabolite["h", "c"], 
+        Toolbox`metabolite["ino", "c"], 
+        Toolbox`metabolite["phos", "c"]}, {1, 1, 1, 1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1431,7 +1431,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["ino", "c"],
+         Toolbox`metabolite["ino", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -1451,8 +1451,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vino", {
-        MASSToolbox`metabolite["ino", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vino", {
+        Toolbox`metabolite["ino", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1480,7 +1480,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["nh3", "c"],
+         Toolbox`metabolite["nh3", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -1500,8 +1500,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vnh3", {
-        MASSToolbox`metabolite["nh3", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vnh3", {
+        Toolbox`metabolite["nh3", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1529,7 +1529,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["phos", "c"],
+         Toolbox`metabolite["phos", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -1549,8 +1549,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vphos", {
-        MASSToolbox`metabolite["phos", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vphos", {
+        Toolbox`metabolite["phos", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1579,7 +1579,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["ino", "c"],
+          Toolbox`metabolite["ino", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1604,7 +1604,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["phos", "c"],
+          Toolbox`metabolite["phos", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -1630,7 +1630,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["hyp", "c"],
+          Toolbox`metabolite["hyp", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1655,7 +1655,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["r1p", "c"],
+          Toolbox`metabolite["r1p", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vpnpase",
@@ -1668,11 +1668,11 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vpnpase", {
-        MASSToolbox`metabolite["ino", "c"], 
-        MASSToolbox`metabolite["phos", "c"]}, {
-        MASSToolbox`metabolite["hyp", "c"], 
-        MASSToolbox`metabolite["r1p", "c"]}, {1, 1, 1, 1}, True],
+      Toolbox`reaction["vpnpase", {
+        Toolbox`metabolite["ino", "c"], 
+        Toolbox`metabolite["phos", "c"]}, {
+        Toolbox`metabolite["hyp", "c"], 
+        Toolbox`metabolite["r1p", "c"]}, {1, 1, 1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1700,7 +1700,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["r1p", "c"],
+         Toolbox`metabolite["r1p", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         InterpretationBox[
@@ -1725,7 +1725,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["r5p", "c"],
+         Toolbox`metabolite["r5p", "c"],
          Editable->False,
          Selectable->False]}], 
        StyleBox["vprm",
@@ -1738,9 +1738,9 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vprm", {
-        MASSToolbox`metabolite["r1p", "c"]}, {
-        MASSToolbox`metabolite["r5p", "c"]}, {1, 1}, True],
+      Toolbox`reaction["vprm", {
+        Toolbox`metabolite["r1p", "c"]}, {
+        Toolbox`metabolite["r5p", "c"]}, {1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1770,7 +1770,7 @@ Cell[BoxData[{
              BackFaceColor->RGBColor[0, 0, 0],
              GraphicsColor->RGBColor[0, 0, 0],
              FontColor->RGBColor[0, 0, 0]]],
-           MASSToolbox`metabolite["atp", "c"],
+           Toolbox`metabolite["atp", "c"],
            Editable->False,
            Selectable->False]}], "+", 
          InterpretationBox[
@@ -1795,7 +1795,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["r5p", "c"],
+          Toolbox`metabolite["r5p", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -1822,7 +1822,7 @@ Cell[BoxData[{
              BackFaceColor->RGBColor[0, 0, 0],
              GraphicsColor->RGBColor[0, 0, 0],
              FontColor->RGBColor[0, 0, 0]]],
-           MASSToolbox`metabolite["adp", "c"],
+           Toolbox`metabolite["adp", "c"],
            Editable->False,
            Selectable->False]}], "+", 
          InterpretationBox[
@@ -1847,7 +1847,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h", "c"],
+          Toolbox`metabolite["h", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -1872,7 +1872,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["prpp", "c"],
+          Toolbox`metabolite["prpp", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vprppsyn",
@@ -1885,12 +1885,12 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vprppsyn", {
-        MASSToolbox`metabolite["atp", "c"], 
-        MASSToolbox`metabolite["r5p", "c"]}, {
-        MASSToolbox`metabolite["adp", "c"], 
-        MASSToolbox`metabolite["h", "c"], 
-        MASSToolbox`metabolite["prpp", "c"]}, {2, 1, 2, 1, 1}, True],
+      Toolbox`reaction["vprppsyn", {
+        Toolbox`metabolite["atp", "c"], 
+        Toolbox`metabolite["r5p", "c"]}, {
+        Toolbox`metabolite["adp", "c"], 
+        Toolbox`metabolite["h", "c"], 
+        Toolbox`metabolite["prpp", "c"]}, {2, 1, 2, 1, 1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1918,7 +1918,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["amp", "c"],
+         Toolbox`metabolite["amp", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -1938,8 +1938,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vamp", {
-        MASSToolbox`metabolite["amp", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vamp", {
+        Toolbox`metabolite["amp", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -1967,7 +1967,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["h", "c"],
+         Toolbox`metabolite["h", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -1987,8 +1987,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vh", {
-        MASSToolbox`metabolite["h", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vh", {
+        Toolbox`metabolite["h", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -2016,7 +2016,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]]],
-         MASSToolbox`metabolite["h2o", "c"],
+         Toolbox`metabolite["h2o", "c"],
          Editable->False,
          Selectable->False], "\[Equilibrium]", 
         StyleBox["\[EmptySet]",
@@ -2036,8 +2036,8 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vh2o", {
-        MASSToolbox`metabolite["h2o", "c"]}, {}, {1}, True],
+      Toolbox`reaction["vh2o", {
+        Toolbox`metabolite["h2o", "c"]}, {}, {1}, True],
       Editable->False,
       Selectable->False], ",", 
      InterpretationBox[
@@ -2066,7 +2066,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["adp", "c"],
+          Toolbox`metabolite["adp", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -2091,7 +2091,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h", "c"],
+          Toolbox`metabolite["h", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -2116,7 +2116,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["phos", "c"],
+          Toolbox`metabolite["phos", "c"],
           Editable->False,
           Selectable->False]}], "\[Equilibrium]", 
         RowBox[{
@@ -2142,7 +2142,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["atp", "c"],
+          Toolbox`metabolite["atp", "c"],
           Editable->False,
           Selectable->False], "+", 
          InterpretationBox[
@@ -2167,7 +2167,7 @@ Cell[BoxData[{
             BackFaceColor->RGBColor[0, 0, 0],
             GraphicsColor->RGBColor[0, 0, 0],
             FontColor->RGBColor[0, 0, 0]]],
-          MASSToolbox`metabolite["h2o", "c"],
+          Toolbox`metabolite["h2o", "c"],
           Editable->False,
           Selectable->False]}]}], 
        StyleBox["vatpgen",
@@ -2180,12 +2180,12 @@ Cell[BoxData[{
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]]],
-      MASSToolbox`reaction["vatpgen", {
-        MASSToolbox`metabolite["adp", "c"], 
-        MASSToolbox`metabolite["h", "c"], 
-        MASSToolbox`metabolite["phos", "c"]}, {
-        MASSToolbox`metabolite["atp", "c"], 
-        MASSToolbox`metabolite["h2o", "c"]}, {1, 1, 1, 1, 1}, True],
+      Toolbox`reaction["vatpgen", {
+        Toolbox`metabolite["adp", "c"], 
+        Toolbox`metabolite["h", "c"], 
+        Toolbox`metabolite["phos", "c"]}, {
+        Toolbox`metabolite["atp", "c"], 
+        Toolbox`metabolite["h2o", "c"]}, {1, 1, 1, 1, 1}, True],
       Editable->False,
       Selectable->False]}], "}"}]}], ";"}], "\n", 
  RowBox[{
@@ -2205,7 +2205,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vak"],
+       Toolbox`Keq["vak"],
        Editable->False,
        Selectable->False], "\[Rule]", "1000000"}], ",", 
      RowBox[{
@@ -2221,7 +2221,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vampase"],
+       Toolbox`Keq["vampase"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2244,7 +2244,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vada"],
+       Toolbox`Keq["vada"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2267,7 +2267,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vampda"],
+       Toolbox`Keq["vampda"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2290,7 +2290,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vimpase"],
+       Toolbox`Keq["vimpase"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2313,7 +2313,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vpnpase"],
+       Toolbox`Keq["vpnpase"],
        Editable->False,
        Selectable->False], "\[Rule]", "0.09`"}], ",", 
      RowBox[{
@@ -2329,7 +2329,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vprm"],
+       Toolbox`Keq["vprm"],
        Editable->False,
        Selectable->False], "\[Rule]", "13.3`"}], ",", 
      RowBox[{
@@ -2345,7 +2345,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vprppsyn"],
+       Toolbox`Keq["vprppsyn"],
        Editable->False,
        Selectable->False], "\[Rule]", "1000000"}], ",", 
      RowBox[{
@@ -2361,7 +2361,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vadprt"],
+       Toolbox`Keq["vadprt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2384,7 +2384,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vade"],
+       Toolbox`Keq["vade"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2400,7 +2400,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vado"],
+       Toolbox`Keq["vado"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2416,7 +2416,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vino"],
+       Toolbox`Keq["vino"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2432,7 +2432,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vhyp"],
+       Toolbox`Keq["vhyp"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2448,7 +2448,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vphos"],
+       Toolbox`Keq["vphos"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2464,7 +2464,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vnh3"],
+       Toolbox`Keq["vnh3"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2480,7 +2480,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vatpgen"],
+       Toolbox`Keq["vatpgen"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2503,7 +2503,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vh"],
+       Toolbox`Keq["vh"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2519,7 +2519,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vh2o"],
+       Toolbox`Keq["vh2o"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}], ",", 
      RowBox[{
@@ -2535,7 +2535,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`Keq["vamp"],
+       Toolbox`Keq["vamp"],
        Editable->False,
        Selectable->False], "\[Rule]", "1"}]}], "}"}]}], ";"}], "\n", 
  RowBox[{
@@ -2565,7 +2565,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["r5p", "c"],
+       Toolbox`metabolite["r5p", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2598,7 +2598,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ade", "c"],
+       Toolbox`metabolite["ade", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2631,7 +2631,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ado", "c"],
+       Toolbox`metabolite["ado", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2664,7 +2664,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["imp", "c"],
+       Toolbox`metabolite["imp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2697,7 +2697,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ino", "c"],
+       Toolbox`metabolite["ino", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2730,7 +2730,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["hyp", "c"],
+       Toolbox`metabolite["hyp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2763,7 +2763,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["r1p", "c"],
+       Toolbox`metabolite["r1p", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2796,7 +2796,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["prpp", "c"],
+       Toolbox`metabolite["prpp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2829,7 +2829,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["amp", "c"],
+       Toolbox`metabolite["amp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2862,7 +2862,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["adp", "c"],
+       Toolbox`metabolite["adp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2895,7 +2895,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["atp", "c"],
+       Toolbox`metabolite["atp", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2928,7 +2928,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["phos", "c"],
+       Toolbox`metabolite["phos", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2961,7 +2961,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["h", "c"],
+       Toolbox`metabolite["h", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -2994,7 +2994,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["h2o", "c"],
+       Toolbox`metabolite["h2o", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3027,7 +3027,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["nh3", "c"],
+       Toolbox`metabolite["nh3", "c"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3263,7 +3263,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ado", "Xt"],
+       Toolbox`metabolite["ado", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3296,7 +3296,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ade", "Xt"],
+       Toolbox`metabolite["ade", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3329,7 +3329,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["ino", "Xt"],
+       Toolbox`metabolite["ino", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3362,7 +3362,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["hyp", "Xt"],
+       Toolbox`metabolite["hyp", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3395,7 +3395,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["phos", "Xt"],
+       Toolbox`metabolite["phos", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3428,7 +3428,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["nh3", "Xt"],
+       Toolbox`metabolite["nh3", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3461,7 +3461,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["amp", "Xt"],
+       Toolbox`metabolite["amp", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3494,7 +3494,7 @@ Cell[BoxData[{
          BackFaceColor->RGBColor[0, 0, 0],
          GraphicsColor->RGBColor[0, 0, 0],
          FontColor->RGBColor[0, 0, 0]]],
-       MASSToolbox`metabolite["h", "Xt"],
+       Toolbox`metabolite["h", "Xt"],
        Editable->False,
        Selectable->False], "\[Rule]", 
       InterpretationBox[
@@ -3555,7 +3555,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-         MASSToolbox`rateconst["vh", True],
+         Toolbox`rateconst["vh", True],
          Editable->False,
          Selectable->False], "\[Rule]", "100000"}], ",", 
        RowBox[{
@@ -3571,7 +3571,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-         MASSToolbox`rateconst["vade", True],
+         Toolbox`rateconst["vade", True],
          Editable->False,
          Selectable->False], "\[Rule]", "100000"}], ",", 
        RowBox[{
@@ -3587,7 +3587,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-         MASSToolbox`rateconst["vino", True],
+         Toolbox`rateconst["vino", True],
          Editable->False,
          Selectable->False], "\[Rule]", "100000"}], ",", 
        RowBox[{
@@ -3603,7 +3603,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-         MASSToolbox`rateconst["vhyp", True],
+         Toolbox`rateconst["vhyp", True],
          Editable->False,
          Selectable->False], "\[Rule]", "100000"}], ",", 
        RowBox[{
@@ -3619,7 +3619,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-         MASSToolbox`rateconst["vnh3", True],
+         Toolbox`rateconst["vnh3", True],
          Editable->False,
          Selectable->False], "\[Rule]", "100000"}], ",", 
        RowBox[{
@@ -3635,7 +3635,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-         MASSToolbox`rateconst["vphos", True],
+         Toolbox`rateconst["vphos", True],
          Editable->False,
          Selectable->False], "\[Rule]", "100000"}], ",", 
        RowBox[{
@@ -3651,7 +3651,7 @@ Cell[BoxData[{
            BackFaceColor->RGBColor[0, 0, 0],
            GraphicsColor->RGBColor[0, 0, 0],
            FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-         MASSToolbox`rateconst["vamp", True],
+         Toolbox`rateconst["vamp", True],
          Editable->False,
          Selectable->False], "\[Rule]", "100000"}]}], "}"}]}], "]"}]}], 
   ";"}], "\n", 
@@ -3848,7 +3848,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vampda", True],
+     Toolbox`rateconst["vampda", True],
      Editable->False,
      Selectable->False], "\[Rule]", "0.1614239918930086`"}], ",", 
    RowBox[{
@@ -3864,7 +3864,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vatpgen", True],
+     Toolbox`rateconst["vatpgen", True],
      Editable->False,
      Selectable->False], "\[Rule]", "0.20413838154677308`"}], ",", 
    RowBox[{
@@ -3880,7 +3880,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vprm", True],
+     Toolbox`rateconst["vprm", True],
      Editable->False,
      Selectable->False], "\[Rule]", "0.2347867752755151`"}], ",", 
    RowBox[{
@@ -3896,7 +3896,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vprppsyn", True],
+     Toolbox`rateconst["vprppsyn", True],
      Editable->False,
      Selectable->False], "\[Rule]", "1.107034449764991`"}], ",", 
    RowBox[{
@@ -3912,7 +3912,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vampase", True],
+     Toolbox`rateconst["vampase", True],
      Editable->False,
      Selectable->False], "\[Rule]", "1.3836342495690155`"}], ",", 
    RowBox[{
@@ -3928,7 +3928,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vimpase", True],
+     Toolbox`rateconst["vimpase", True],
      Editable->False,
      Selectable->False], "\[Rule]", "1.4000003500000875`"}], ",", 
    RowBox[{
@@ -3944,7 +3944,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vada", True],
+     Toolbox`rateconst["vada", True],
      Editable->False,
      Selectable->False], "\[Rule]", "8.333333965277827`"}], ",", 
    RowBox[{
@@ -3960,7 +3960,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vpnpase", True],
+     Toolbox`rateconst["vpnpase", True],
      Editable->False,
      Selectable->False], "\[Rule]", "12.`"}], ",", 
    RowBox[{
@@ -3976,7 +3976,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vak", True],
+     Toolbox`rateconst["vak", True],
      Editable->False,
      Selectable->False], "\[Rule]", "62.50081873325923`"}], ",", 
    RowBox[{
@@ -3992,7 +3992,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vadprt", True],
+     Toolbox`rateconst["vadprt", True],
      Editable->False,
      Selectable->False], "\[Rule]", "3140.4574868453906`"}], ",", 
    RowBox[{
@@ -4008,7 +4008,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vado", True],
+     Toolbox`rateconst["vado", True],
      Editable->False,
      Selectable->False], "\[Rule]", "99999.9999999433`"}], ",", 
    RowBox[{
@@ -4024,7 +4024,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vade", True],
+     Toolbox`rateconst["vade", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000"}], ",", 
    RowBox[{
@@ -4040,7 +4040,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vamp", True],
+     Toolbox`rateconst["vamp", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000"}], ",", 
    RowBox[{
@@ -4056,7 +4056,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vh", True],
+     Toolbox`rateconst["vh", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000"}], ",", 
    RowBox[{
@@ -4072,7 +4072,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vhyp", True],
+     Toolbox`rateconst["vhyp", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000"}], ",", 
    RowBox[{
@@ -4088,7 +4088,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vino", True],
+     Toolbox`rateconst["vino", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000"}], ",", 
    RowBox[{
@@ -4104,7 +4104,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vnh3", True],
+     Toolbox`rateconst["vnh3", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000"}], ",", 
    RowBox[{
@@ -4120,7 +4120,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vphos", True],
+     Toolbox`rateconst["vphos", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000"}], ",", 
    RowBox[{
@@ -4136,7 +4136,7 @@ Cell[BoxData[
        BackFaceColor->RGBColor[0, 0, 0],
        GraphicsColor->RGBColor[0, 0, 0],
        FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-     MASSToolbox`rateconst["vh2o", True],
+     Toolbox`rateconst["vh2o", True],
      Editable->False,
      Selectable->False], "\[Rule]", "100000.00000637631`"}]}], 
   "}"}]], "Output",
@@ -4223,9 +4223,9 @@ zZ+lcu+QWvUgFSZtBLes2jA7KLcxRmbVgYauNvUHZFc9Sipa1B3/v93aPt+4
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["ade", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["ade", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["ade", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["ade", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -4316,9 +4316,9 @@ NWn9VVVhYqaqk26kQ9c6WfVJG0S7xxb4a0zazcB23Yv9cybdIpQ0pvfr/7Yr
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["ado", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["ado", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["ado", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["ado", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -4429,9 +4429,9 @@ uv8P0eL2kA==
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["adp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["adp", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["adp", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["adp", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -4537,9 +4537,9 @@ pffjYgJ/SM67kSqgVl6+ZN5fQrOeYKXS83b/qpoqmr1s3u9O2qfWn1g+bxnj
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["amp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["amp", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["amp", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["amp", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -4633,9 +4633,9 @@ X7m8frsqGjYXWo3/t+yvNv2mvhR5/PCyt8RR40to8njC/+P9PZPvJuXx9mWf
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["atp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["atp", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["atp", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["atp", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -4806,9 +4806,9 @@ Uv9Zf3PDVY4tMv+5XQmGdgjI/ef18X6Jb0Lk/7PP+v07Xh9W+M/drA/n9fr+
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["h", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["h", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["h", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["h", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5019,9 +5019,9 @@ wsWkGawO/vPce4EnPlb/fDqA7dgV+3/O+3RZ9bbzP/dKrTCkuv2LLxt0rvmB
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["h2o", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["h2o", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["h2o", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["h2o", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5060,9 +5060,9 @@ Xv7GY/Z/h/70supOjBnlfwDyNer8
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["hyp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["hyp", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["hyp", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["hyp", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5244,9 +5244,9 @@ P2XbyXSz//kbK7vGmzcCdIv/2Wmb/cnuakG66f/cFpb3nLlC6J/vaf99GFki
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["imp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["imp", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["imp", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["imp", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5323,9 +5323,9 @@ v8Y=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["ino", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["ino", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["ino", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["ino", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5378,9 +5378,9 @@ rCi3z34FHgbWlF1SxKklUiblEBdvj6JvbSh3065OOfX9a59Hb27cCrKl/A/Y
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["nh3", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["nh3", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["nh3", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["nh3", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5420,9 +5420,9 @@ Op+IMrP5+oRdPLqzyYcNCA8xQeJDMSTseoOfJxLQCfNcQ3wenjQiPCp3Z91x
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["phos", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["phos", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["phos", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["phos", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5611,9 +5611,9 @@ Z+hVR+23FvnPW/d8v8m0V/Q/t8vhEUMO8f+8Pc4zoTxA4j97bLcyfHta8j/3
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["prpp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["prpp", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["prpp", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["prpp", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5697,9 +5697,9 @@ l1vxD+qT+W0D/9nxPT0jx1N+xf8HtWWU8Q==
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["r1p", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["r1p", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["r1p", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["r1p", "c"], 
      "Tooltip"]& ], 
    TagBox[
     TooltipBox[
@@ -5792,9 +5792,9 @@ V47rD/YYutNl8BaOt4Qznub6yuBd/3/f0zmWMyaDD3LsusXK5OMpWXyS407a
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["r5p", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["r5p", "c"], Editable -> False, Selectable -> 
         False]}]],
-    Annotation[#, "Liter" "Millimole" MASSToolbox`metabolite["r5p", "c"], 
+    Annotation[#, "Liter" "Millimole" Toolbox`metabolite["r5p", "c"], 
      "Tooltip"]& ]},
   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
   AxesOrigin->{-13.815510557964274`, -9.670848492862994},
@@ -6337,7 +6337,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vada", True],
+      Toolbox`rateconst["vada", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6359,7 +6359,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vado", True],
+      Toolbox`rateconst["vado", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6381,7 +6381,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vadprt", True],
+      Toolbox`rateconst["vadprt", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6407,7 +6407,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vak", True],
+      Toolbox`rateconst["vak", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6433,7 +6433,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vampase", True],
+      Toolbox`rateconst["vampase", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6455,7 +6455,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vampda", True],
+      Toolbox`rateconst["vampda", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6477,7 +6477,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vimpase", True],
+      Toolbox`rateconst["vimpase", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6499,7 +6499,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vpnpase", True],
+      Toolbox`rateconst["vpnpase", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6524,7 +6524,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vprm", True],
+      Toolbox`rateconst["vprm", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6546,7 +6546,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vprppsyn", True],
+      Toolbox`rateconst["vprppsyn", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6573,7 +6573,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vh2o", True],
+      Toolbox`rateconst["vh2o", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6595,7 +6595,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vatpgen", True],
+      Toolbox`rateconst["vatpgen", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6621,7 +6621,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vh", True],
+      Toolbox`rateconst["vh", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6643,7 +6643,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vade", True],
+      Toolbox`rateconst["vade", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6665,7 +6665,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vino", True],
+      Toolbox`rateconst["vino", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6687,7 +6687,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vhyp", True],
+      Toolbox`rateconst["vhyp", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6709,7 +6709,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vnh3", True],
+      Toolbox`rateconst["vnh3", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6731,7 +6731,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vphos", True],
+      Toolbox`rateconst["vphos", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -6753,7 +6753,7 @@ Cell[BoxData[
         BackFaceColor->RGBColor[0, 0, 0],
         GraphicsColor->RGBColor[0, 0, 0],
         FontColor->RGBColor[0, 0, 0]], "\[LongRightArrow]"],
-      MASSToolbox`rateconst["vamp", True],
+      Toolbox`rateconst["vamp", True],
       Editable->False,
       Selectable->False], 
      InterpretationBox[
@@ -7551,7 +7551,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["ado", "c"],
+            Toolbox`metabolite["ado", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7568,10 +7568,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["ado", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["ado", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["ado", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["ado", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -7614,7 +7614,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["h2o", "c"],
+            Toolbox`metabolite["h2o", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7631,10 +7631,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["h2o", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["h2o", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["h2o", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["h2o", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -7662,7 +7662,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["ino", "c"],
+            Toolbox`metabolite["ino", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7679,10 +7679,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["ino", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["ino", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["ino", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["ino", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -7710,7 +7710,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["nh3", "c"],
+            Toolbox`metabolite["nh3", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7727,10 +7727,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["nh3", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["nh3", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["nh3", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["nh3", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -7758,7 +7758,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["ade", "c"],
+            Toolbox`metabolite["ade", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7775,10 +7775,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["ade", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["ade", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["ade", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["ade", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -7851,7 +7851,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["prpp", "c"],
+            Toolbox`metabolite["prpp", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7868,10 +7868,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["prpp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["prpp", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["prpp", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["prpp", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -7899,7 +7899,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["amp", "c"],
+            Toolbox`metabolite["amp", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7916,10 +7916,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["amp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["amp", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["amp", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["amp", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -7947,7 +7947,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["phos", "c"],
+            Toolbox`metabolite["phos", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -7964,10 +7964,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["phos", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["phos", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["phos", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["phos", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -8010,7 +8010,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["atp", "c"],
+            Toolbox`metabolite["atp", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -8027,10 +8027,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["atp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["atp", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["atp", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["atp", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -8058,7 +8058,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["adp", "c"],
+            Toolbox`metabolite["adp", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -8075,10 +8075,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["adp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["adp", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["adp", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["adp", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -8121,7 +8121,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["h", "c"],
+            Toolbox`metabolite["h", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -8138,10 +8138,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["h", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["h", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["h", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["h", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -8184,7 +8184,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["imp", "c"],
+            Toolbox`metabolite["imp", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -8201,10 +8201,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["imp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["imp", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["imp", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["imp", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -8232,7 +8232,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["hyp", "c"],
+            Toolbox`metabolite["hyp", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -8249,10 +8249,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["hyp", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["hyp", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["hyp", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["hyp", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -8370,7 +8370,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["r1p", "c"],
+            Toolbox`metabolite["r1p", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -8387,10 +8387,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["r1p", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["r1p", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["r1p", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["r1p", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
@@ -8433,7 +8433,7 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
               BackFaceColor->RGBColor[0, 0, 0],
               GraphicsColor->RGBColor[0, 0, 0],
               FontColor->RGBColor[0, 0, 0]]],
-            MASSToolbox`metabolite["r5p", "c"],
+            Toolbox`metabolite["r5p", "c"],
             Editable->False,
             Selectable->False],
            StandardForm],
@@ -8450,10 +8450,10 @@ sIPGFggfrHyWsMOuDRD+qnRQhAk7LFgL4UOSj4gDAGxWIMY=
          StyleBox["c", 
           RGBColor[0, 0, 0], StripOnInput -> False, ShowSyntaxStyles -> False,
            AutoSpacing -> False, ZeroWidthTimes -> True]], 
-        MASSToolbox`metabolite["r5p", "c"], Editable -> False, Selectable -> 
+        Toolbox`metabolite["r5p", "c"], Editable -> False, Selectable -> 
         False]],
       Annotation[#, 
-       MASSToolbox`metabolite["r5p", "c"], "Tooltip"]& ], 
+       Toolbox`metabolite["r5p", "c"], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        StyleBox[InsetBox[
