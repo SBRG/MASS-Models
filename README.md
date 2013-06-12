@@ -1,8 +1,4 @@
-# This is my README
+# MASS-Models
 
-Change in README file
-=======
-MASS-Models
-===========
-
-A collection of MASS Toolbox models 
+[data](data/) contains supplementary data like SBML file, maps etc.
+[code](code/) contains the code used for generating the [models](models/).
