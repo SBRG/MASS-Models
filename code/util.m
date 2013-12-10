@@ -1,12 +1,12 @@
 (* ::Package:: *)
 
 simphenyGPRr2gpr[table_]:=Module[{protHelperFunc,convertLogic,parseProteinAssociation,proteinAssociations,proteinGeneAssociations},
-protHelperFunc=#/.If[AtomQ[#]&&#=!=Null,#->protein[ToString[#]],(#->protein[ToString[#]]&/@Union[Cases[#,_Symbol,\[Infinity]]])]&;
-convertLogic=StringReplace[#,{"and"->"&&","or"->"||"}]&;
-parseProteinAssociation=StringReplace[#[[1]],"-"->"_"]->protHelperFunc[ToExpression@convertLogic[#[[-1]]]]/.a_And:>proteinComplex@@a&;
-proteinAssociations=(parseProteinAssociation/@table)/.Null->None;
-proteinGeneAssociations=StringCases[#[[6]],RegularExpression["(\\w+)\\s+\\(([\\&\\s\\w]+)\\)"]:>protein["$1"]->(If[Length[#]>1,geneComplex[Sequence@@(gene[ToString[#]]&/@#)],gene@ToString[#]]&[(ToExpression[convertLogic@"$2"])])]&/@table;
-Union[Flatten[{DeleteCases[proteinAssociations,r_Rule/;r[[2]]===None,\[Infinity]],Union@Flatten[proteinGeneAssociations]}]]
+	protHelperFunc=#/.If[StringQ[#]&&#=!=Null,#->protein[#],(#->protein[#]&/@Union[Cases[#,_String,\[Infinity]]])]&;
+	convertLogic=StringReplace[#,{"and"->"&&","or"->"||",RegularExpression["([^\\(\\)\\s]+)"]->"\""<>"$1"<>"\""}]&;
+	parseProteinAssociation=StringReplace[#[[1]],"-"->"_"]->protHelperFunc[ToExpression@convertLogic[#[[-1]]]]/.a_And:>proteinComplex@@a&;
+	proteinAssociations=(parseProteinAssociation/@table)/.Null->None;
+	proteinGeneAssociations=StringCases[#[[6]],RegularExpression["(\\S+)\\s+\\(([\\&\\s\\w]+)\\)"]:>protein["$1"]->(If[Length[#]>1,geneComplex[Sequence@@(gene[ToString[#]]&/@#)],gene@ToString[#]]&[(ToExpression[convertLogic@"$2"])])]&/@table;
+	Union[Flatten[{DeleteCases[proteinAssociations,r_Rule/;r[[2]]===None,\[Infinity]],Union@Flatten[proteinGeneAssociations]}]]
 ];
 
 
