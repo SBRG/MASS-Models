@@ -27,13 +27,21 @@ SlideView[gpr,AppearanceElements->All]
 
 
 (* ::Subsection:: *)
+(*Synonyms*)
+
+
+SetDirectory[NotebookDirectory[]];
+Import["../data/iMM904/iMM904.met","TSV"][[16;;20]]
+
+
+(* ::Subsection:: *)
 (*Get reactions, constraints etc. from simpheny dump*)
 
 
 SetDirectory[NotebookDirectory[]];
 stoich=DeleteCases[Import["../data/iMM904/iMM904.sto","Table"],l_List/;l=={}||Quiet@StringMatchQ[l[[1]],RegularExpression["\\*.*"]]];
-mets=m[Sequence@@StringCases[#,RegularExpression["(.*)\\((.*)\\)"]:>{"$1","$2"}][[1]]]&/@DeleteCases[Import["../data/iMM904/iMM904.met","Table"],l_List/;l=={}||Quiet@StringMatchQ[l[[1]],RegularExpression["\\*.*"]]][[2;;,2]];
-{rxnIDs,revTags,lowerBounds,upperBounds,fluxes}=Transpose[Import["../data/iMM904/iMM904.rxn","TSV"][[19;;]][[All,{2,4,5,6,8}]]];
+mets=m[Sequence@@StringCases[#[[1]],RegularExpression["(.*)\\((.*)\\)"]:>{"$1","$2"}][[1]]]->#[[2]]&/@DeleteCases[Import["../data/iMM904/iMM904.met","Table"],l_List/;l=={}||Quiet@StringMatchQ[l[[1]],RegularExpression["\\*.*"]]][[2;;,{2,3}]];
+{rxnIDs,rxnNames,revTags,lowerBounds,upperBounds,fluxes}=Transpose[Import["../data/iMM904/iMM904.rxn","TSV"][[19;;]][[All,{2,3,4,5,6,8}]]];
 irreversibleColumns=Flatten[Position[revTags,"Irreversible"]];
 irreversibleRxnIDs=rxnIDs[[irreversibleColumns]];
 referenceBounds=Thread[(v/@rxnIDs)->Thread[{lowerBounds,upperBounds}]];
@@ -44,9 +52,11 @@ referenceFluxes=Thread[(v/@rxnIDs)->fluxes];
 (*Construct model*)
 
 
-iMM904=constructModel[stoich,mets,rxnIDs,"Irreversible"->irreversibleRxnIDs,"GPR"->gpr];
+iMM904=constructModel[stoich,mets[[All,1]],rxnIDs,"Irreversible"->irreversibleRxnIDs,"GPR"->gpr];
 updateConstraints[iMM904, referenceBounds];
 setObjective[iMM904,Toolbox`v["biomass_SC5_notrace"]]
+updateSynonyms[iMM904,mets]
+updateSynonyms[iMM904,Thread[rxnIDs->rxnNames]]
 setNotes[iMM904,defaultInitializationNotes[]];
 
 
