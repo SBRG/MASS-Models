@@ -23,15 +23,11 @@ gprData=Import["../data/iMM904/iMM904_gpr.txt","CSV"];
 gpr=simphenyGPRr2gpr[gprData[[2;;]]];
 
 
-SlideView[gpr,AppearanceElements->All]
+SlideView[visualizeGPR/@gpr2graphs[gpr][[1;;100]],AppearanceElements->All]
 
 
 (* ::Subsection:: *)
 (*Synonyms*)
-
-
-SetDirectory[NotebookDirectory[]];
-Import["../data/iMM904/iMM904.met","TSV"][[16;;20]]
 
 
 (* ::Subsection:: *)
