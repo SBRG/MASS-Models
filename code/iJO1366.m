@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-<<MASStoolbox`
+<<Toolbox`
 <<XML`
 SetDirectory[NotebookDirectory[]];
 <<util`
@@ -26,13 +26,20 @@ referenceFluxes=#[[1]]->#[[2,-1]]&/@referenceFluxesPlusBounds;
 
 
 SetDirectory[NotebookDirectory[]];
-model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"]//.s_String:>StringReplace[s,biggCommonStringReplacements]
-setModelAttribute[model,"GPR",gpr];
-updateModelAttribute[model,"Constraints",referenceBounds//.s_String:>StringReplace[s,biggCommonStringReplacements]];
-setModelAttribute[model,"Notes",defaultInitializationNotes[]];
+ecogeneMapping=Import["../data/ecogene_mapping_ecodownload_xref_1379576319.csv.gz"];
 
 
-model["Notes"]
+rawXML=Import["../data/iJO1366/msb201165-s3.xml.gz","XML"];
+elementalComposition=str2mass[("id"/.#[[2]])]->formula2elementalComposition[StringReplace[Cases[#,XMLElement["p",__],\[Infinity]][[1,3,1]],"FORMULA: "->""]]&/@Cases[rawXML,XMLElement["species",__],\[Infinity]];
+
+
+SetDirectory[NotebookDirectory[]];
+model=sbml2model["../data/iJO1366/msb201165-s3.xml.gz",Method->"Light"]//.s_String:>StringReplace[s,biggCommonStringReplacements];
+setGPR[model,gpr];
+updateConstraints[model,referenceBounds//.s_String:>StringReplace[s,biggCommonStringReplacements]];
+setObjective[model,Toolbox`v["Ec_biomass_iJO1366_WT_53p95M"]];
+setElementalComposition[model,elementalComposition];
+setNotes[model,defaultInitializationNotes[]];
 
 
 SetDirectory[NotebookDirectory[]];
@@ -47,16 +54,30 @@ SetDirectory[NotebookDirectory[]];
 iJO1366=Import["../models/iJO1366/iJO1366.m.gz"];
 
 
-iJO1366["Constraints"]
+fluxes=fba[iJO1366,Solver->GurobiSolve];
 
 
-biomassRxn=Cases[iJO1366["Fluxes"],s_String/;StringMatchQ[s,RegularExpression[".*bio.*"]],\[Infinity]][[1]]
+iJO1366["Objective"]/.fluxes
 
 
-fluxes=fba[iJO1366,biomassRxn,Solver->GurobiSolve];
+<<Toolbox`
 
 
-biomassRxn/.fluxes
+exclude=model["Exchanges"];
+balancing=Thread[Rule[model["Reactions"],Expand/@((model["Species"]/.model["ElementalComposition"]).model)]];
+balancing=DeleteCases[balancing,r_Rule/;MemberQ[exclude,r[[1]]]];
+
+
+balancing[[1;;4]]
+
+
+balancing[[1;;4]][[All,2]]
+
+
+elementallyBalancedQ[iJO1366]
+
+
+iJO1366["ElementalComposition"]
 
 
 fvaResult=GurobiFVA[iJO1366];
