@@ -23,13 +23,6 @@ gprData=Import["../data/iMM904/iMM904_gpr.txt","CSV"];
 gpr=simphenyGPRr2gpr[gprData[[2;;]]];
 
 
-SlideView[visualizeGPR/@gpr2graphs[gpr][[1;;100]],AppearanceElements->All]
-
-
-(* ::Subsection:: *)
-(*Synonyms*)
-
-
 (* ::Subsection:: *)
 (*Get reactions, constraints etc. from simpheny dump*)
 

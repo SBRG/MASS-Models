@@ -16,7 +16,9 @@ simphenyGPRr2gpr[table_]:=Module[{protHelperFunc,convertLogic,parseProteinAssoci
 	parseProteinAssociation=#[[1]]->protHelperFunc[ToExpression@convertLogic[#[[-1]]]]/.a_And:>proteinComplex@@Union[a]/.o_Or:>Union[o]&;
 	proteinAssociations=(parseProteinAssociation/@table)/.Null->None;
 	(*proteinGeneAssociations=StringCases[#[[6]],RegularExpression["(\\S+)\\s+\\(([\\&\\s\\w]+)\\)"]:>protein["$1"]->(If[Length[#]>1,geneComplex[Sequence@@(gene[ToString[#]]&/@#)],gene@ToString[#]]&[(ToExpression[convertLogic@"$2"])])]&/@table;*)
-	proteinGeneAssociations=Union[Flatten[(ToExpression[convertLogic[#[[-3]]]]/.times_Times:>protein[times[[1]]]->gene[times[[2]]]/.stuff:gene[_And]:>geneComplex[Sequence@@(gene/@Union[List@@stuff[[1]]])]&/@table)/.{And->List,Or->List}]]/.Null->Sequence[];
+	(*proteinGeneAssociations=Flatten@ReleaseHold[(ToExpression[convertLogic[#[[-3]]],InputForm,Hold]/.times_Times:>protein[times[[1]]]->gene[times[[2]]]/.stuff:gene[_And]:>geneComplex[Sequence@@(gene/@Union[List@@stuff[[1]]])]&/@table)/.{And->List,Or->List}/.Null->Sequence[]];*)
+	proteinGeneAssociations=DeleteCases[#,Null]&@Union[Flatten[
+		ReleaseHold[ToExpression[convertLogic[#[[-3]]],InputForm,Hold]/.Times->CircleTimes/.times_CircleTimes:>(protein[times[[1]]]->gene[times[[2]]]/.Null->Sequence[])]/.stuff:gene[_And]:>geneComplex[Sequence@@(gene/@Union[List@@stuff[[1]]])]/.{Or->List,And->List}&/@table]];
 	Union[Flatten[{DeleteCases[proteinAssociations,r_Rule/;r[[2]]===None,\[Infinity]],Union@Flatten[proteinGeneAssociations]}]]
 ];
 
